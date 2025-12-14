@@ -1,0 +1,21 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.hero-section {
+    background: url('../assets/img/bg-masthead.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.skill-item i {
+    color: #007bff;
+}
+
+.project-card {
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
