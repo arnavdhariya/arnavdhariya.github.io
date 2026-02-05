@@ -1,12 +1,27 @@
 ---
 layout: page
 title: About Me
-description: This is what I do.
+description: A short bio, resume, and how to reach me.
 background: '/img/bg-about.jpg'
 ---
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed quisquam ut perspiciatis, repudiandae nulla animi iste vel, praesentium repellendus molestias aliquid consequatur, earum rem qui error voluptates eius enim consequuntur!</p>
+<h2>Bio</h2>
+<p>[Add a short bio: your research interests, how you got into them, and what motivates you.]</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex alias, earum consectetur quia natus ducimus voluptate explicabo, hic porro reprehenderit, quasi? Tenetur ipsum distinctio laboriosam perspiciatis officiis dolore, architecto id.</p>
+<hr>
 
-<p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam inventore aspernatur repellendus incidunt adipisci modi voluptates recusandae iste eligendi, repudiandae corporis quod aut, optio! Explicabo quaerat unde voluptatem! Itaque, eum!</p>
+<h2>Resume</h2>
+<p>Embed or link your resume PDF here.</p>
+<div class="embed-responsive embed-responsive-4by3 mb-3">
+  <iframe class="embed-responsive-item" src="{{ "/assets/resume.pdf" | relative_url }}"></iframe>
+</div>
+<p><a href="{{ "/assets/resume.pdf" | relative_url }}" target="_blank" rel="noopener noreferrer">Download Resume (PDF)</a></p>
+
+<hr>
+
+<h2>Contact</h2>
+<p>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+<p>GitHub: <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">@{{ site.github_username }}</a></p>
+{% if site.linkedin_username %}
+<p>LinkedIn: <a href="https://www.linkedin.com/in/{{ site.linkedin_username | replace: ' ', '' }}" target="_blank" rel="noopener noreferrer">{{ site.linkedin_username }}</a></p>
+{% endif %}

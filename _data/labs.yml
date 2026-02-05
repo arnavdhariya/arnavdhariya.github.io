@@ -1,0 +1,7 @@
+- name: "Lab / Group Name"
+  role: "Role or affiliation"
+  url: "https://example.com/lab"
+
+- name: "Lab / Group Name"
+  role: "Role or affiliation"
+  url:

@@ -1,0 +1,23 @@
+---
+layout: page
+title: Articles
+description: Essays and posts from Substack and Medium.
+background: '/img/bg-post.jpg'
+---
+
+<p>Long-form writing on research, software, and ideas in progress.</p>
+
+{% for article in site.data.articles %}
+<article class="post-preview">
+  <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">
+    <h2 class="post-title">{{ article.title }}</h2>
+    {% if article.subtitle %}
+    <h3 class="post-subtitle">{{ article.subtitle }}</h3>
+    {% else %}
+    <h3 class="post-subtitle">{{ article.description }}</h3>
+    {% endif %}
+  </a>
+  <p class="post-meta">{{ article.outlet }} • {{ article.date }}</p>
+</article>
+<hr>
+{% endfor %}

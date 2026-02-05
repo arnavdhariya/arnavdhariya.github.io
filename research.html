@@ -1,0 +1,49 @@
+---
+layout: page
+title: Research
+description: Publications, labs, and research communications.
+background: '/img/bg-about.jpg'
+---
+
+<h2>Research Focus</h2>
+<p>My work explores <strong>[area]</strong> with emphasis on <strong>[methods / themes]</strong>. I am especially interested in <strong>[sub-areas]</strong>.</p>
+
+<hr>
+
+<h2>Research Presentation</h2>
+<p class="text-muted">Talk or overview video with abstract.</p>
+
+<div class="embed-responsive embed-responsive-16by9 mb-3">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+</div>
+
+<p><strong>Abstract:</strong> [Add a short abstract here describing the talk and main results.]</p>
+
+<hr>
+
+<h2>Publications</h2>
+<p class="text-muted">Add your papers here so they can be indexed by Google Scholar.</p>
+
+{% for pub in site.data.publications %}
+<div class="mb-4">
+  <p class="mb-1"><strong>{{ pub.title }}</strong></p>
+  <p class="mb-1">{{ pub.authors }}</p>
+  <p class="text-muted mb-1">{{ pub.venue }} ({{ pub.year }})</p>
+  <p class="mb-0">
+    {% if pub.pdf %}<a href="{{ pub.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>{% endif %}
+    {% if pub.pdf and pub.url %} • {% endif %}
+    {% if pub.url %}<a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Publisher</a>{% endif %}
+    {% if pub.code %} • <a href="{{ pub.code }}" target="_blank" rel="noopener noreferrer">Code</a>{% endif %}
+  </p>
+</div>
+<hr>
+{% endfor %}
+
+<h2>Labs</h2>
+<p class="text-muted">Groups and labs I’m affiliated with.</p>
+
+<ul>
+  {% for lab in site.data.labs %}
+  <li><strong>{{ lab.name }}</strong> — {{ lab.role }}{% if lab.url %} • <a href="{{ lab.url }}" target="_blank" rel="noopener noreferrer">Website</a>{% endif %}</li>
+  {% endfor %}
+</ul>
