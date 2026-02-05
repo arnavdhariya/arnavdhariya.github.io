@@ -10,15 +10,6 @@ background: '/img/bg-about.jpg'
 
 <hr>
 
-<h2>Research Presentation</h2>
-<p class="text-muted">Talk or overview video with abstract.</p>
-
-<div class="embed-responsive embed-responsive-16by9 mb-3">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-</div>
-
-<p><strong>Abstract:</strong> [Add a short abstract here describing the talk and main results.]</p>
-
 <hr>
 
 <h2>Publications</h2>
@@ -38,6 +29,20 @@ background: '/img/bg-about.jpg'
 </div>
 <hr>
 {% endfor %}
+
+<h2>Research Presentation</h2>
+<p class="text-muted">Talk or overview video with abstract.</p>
+
+<h3>Simulated Annealing Haplotype Aligner</h3>
+<p><em>A faster and novel approach to genome haplotype assembly using simulated annealing and super reads.</em></p>
+<p><strong>Presenter(s):</strong> Arnav Dhariya, Pranavi Gollanapalli</p>
+<p><strong>Faculty Mentor(s):</strong> Wayne Hayes</p>
+
+<div class="embed-responsive embed-responsive-16by9 mb-3">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/BR4FiOCcmdU" allowfullscreen></iframe>
+</div>
+
+<p><strong>Abstract:</strong> Simulated Annealing Haplotype Aligner (SAHap), a C++ application, tackles the challenge of separating parental genome sequences from lossy end reads. Rather than merging all reads into a single genome, similar to all other genome sequencing algorithms, it treats each read as belonging to one of the two (or more, in polyploid cases) haplotypes. It seeks the configuration that will minimize the total weighted mismatch between reads and their assigned sequence (wMEC). Reads have already been sequenced into the right position (site). SAHap shuffles these assignments randomly and then assesses the change in error. It gradually tightens the search; swaps that reduce the overall wMEC are always kept, while those that increase it are allowed early on to avoid getting stagnant at a local minimum similar to other algorithms like the hill climb. According to the temperature schedule, a method to gradually phase out acceptance of bad moves, it is decided which move will be accepted. Thus, guiding the program toward a decent arrangement of reads into haplotype groups. Currently, this algorithm works and minimizes error successfully however it leaves areas of high wMEC that do not reach the optimal solution. To smooth out errors in these segments, SAHap will fuse consecutive, vertical, perfectly matching reads into longer super-reads, based on the MaSURca assembler. Combining reads minimizes the amount of variables thus enabling the ability to get a better solution. Another proposed solution is to run the simulated annealing algorithm again on the windows of high wMEC. When tested on datasets of five hundred and then twenty-thousand reads, this two-stage approach with super-reads will consistently deliver lower error scores. The SAHap assembler will be able to reach a better solution in a quicker time due to the algorithm and super-reads.</p>
 
 <h2>Labs</h2>
 <p class="text-muted">Groups and labs I’m affiliated with.</p>
