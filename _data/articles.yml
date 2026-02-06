@@ -1,18 +1,1 @@
-- title: "Article Title One"
-  subtitle: "Optional subtitle for the article."
-  outlet: "Substack"
-  date: "2024-11-01"
-  url: "https://example.com/article-one"
-  description: "One-sentence description of the article."
-
-- title: "Article Title Two"
-  outlet: "Medium"
-  date: "2024-10-12"
-  url: "https://example.com/article-two"
-  description: "One-sentence description of the article."
-
-- title: "Article Title Three"
-  outlet: "Substack"
-  date: "2024-09-05"
-  url: "https://example.com/article-three"
-  description: "One-sentence description of the article."
+# Auto-generated from Substack feed. Do not edit by hand.

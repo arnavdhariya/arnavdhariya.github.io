@@ -1,0 +1,38 @@
+name: Fetch Substack Articles
+
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch Substack feed
+        run: |
+          python3 scripts/fetch_substack.py
+        env:
+          SUBSTACK_FEED_URL: "https://arnavdhariya.substack.com/feed"
+          OUTPUT_PATH: "_data/articles.yml"
+          MAX_ITEMS: "10"
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/articles.yml
+          git commit -m "chore: update Substack articles"
+          git push
