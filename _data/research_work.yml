@@ -1,19 +1,31 @@
 - name: "Simulated Annealing Haplotype Aligner (SAHap)"
   summary: "A C++ haplotype assembly tool that uses simulated annealing and super-read strategies to reduce weighted mismatch error and improve reconstruction quality."
   tags: "C++, Algorithms, Computational Biology, Optimization"
+  affiliation: "Dr. Wayne Hayes Research Group @ UCI"
+  period: "Sep 2024 - Sep 2025"
+  detail: "Led the simulated annealing-based haplotype assembly project as a freshman researcher, implemented local optimization strategies (including simulated annealing and hill climbing), and presented the work at the UCI Undergraduate Research Symposium."
   link: "https://uciurop.infoready4.com/#learnMore/28986"
 
 - name: "Privacy-Preserving Deletion Benchmarking Pipeline"
   summary: "Python and MySQL-backed experimental pipeline for evaluating differential privacy and ILP-based deletion mechanisms under Right-to-Be-Forgotten settings across UCI ML datasets."
   tags: "Python, MySQL, Differential Privacy, ILP"
+  affiliation: "Mehrotra Lab (Sharad's Lab) @ UCI"
+  period: "Aug 2025 - Present"
+  detail: "Designed and implemented deletion mechanisms, evaluated RTBF guarantees through controlled studies, and built a reproducible benchmarking framework for deletion efficiency and leakage analysis in collaboration toward a VLDB submission."
   link:
 
 - name: "Large-Scale Sharding Simulation Framework"
   summary: "A discrete-event simulator for vector-search sharding strategies (including IVF and ANN variants) used to study bursty workloads, failure propagation, and graceful degradation."
   tags: "Distributed Systems, Simulation, Retrieval Infrastructure"
+  affiliation: "Network, Systems, and AI Lab (NetSAIL) @ UCI"
+  period: "Aug 2025 - Present"
+  detail: "Built simulation infrastructure to analyze system resilience, load imbalance, and degradation behavior under server failures and non-stationary workloads."
   link:
 
 - name: "Biological Model Evaluation and Soft-Verifier Framework"
   summary: "Graph-metric evaluation pipelines and a soft-verifier training framework for weakly supervised biological ML/LLM systems over gene relationship datasets."
   tags: "Machine Learning, Bioinformatics, Evaluation Systems"
+  affiliation: "Zhang Lab @ UCI"
+  period: "Aug 2025 - Present"
+  detail: "Investigated gene relationship datasets used in biological ML/LLM models, designed graph-based evaluation metrics across cell-line datasets, and developed a soft-verifier framework to reduce dependence on proprietary data."
   link:

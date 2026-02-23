@@ -1,20 +1,12 @@
 ---
 layout: page
 title: Projects
-description: Selected projects and experiments.
+description: Independent software projects and demos (separate from research work).
 background: '/img/bg-post.jpg'
 ---
 
-<p>Research-driven systems and algorithmic projects spanning computational biology, privacy-preserving ML, and distributed infrastructure.</p>
+<p>This page is reserved for standalone engineering projects, demos, and open-source work that are distinct from my lab research.</p>
 
-{% for project in site.data.projects %}
-<article class="post-preview">
-  <h2 class="post-title">{{ project.name }}</h2>
-  <h3 class="post-subtitle">{{ project.summary }}</h3>
-  <p class="post-meta">{{ project.tags }}</p>
-  {% if project.link %}
-  <p><a href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Project Link</a></p>
-  {% endif %}
-</article>
-<hr>
-{% endfor %}
+<p>My currently listed systems work (including SAHap, privacy-preserving ML benchmarking pipelines, distributed sharding simulations, and biological model evaluation frameworks) is documented on the <a href="{{ "/research" | relative_url }}">Research</a> page because those efforts are part of ongoing research collaborations.</p>
+
+<p>I will publish independent projects here as they are production-ready and publicly shareable.</p>
