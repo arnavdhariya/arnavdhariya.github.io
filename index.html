@@ -5,7 +5,8 @@ background: '/img/bg-index.jpg'
 
 <div class="row align-items-center">
   <div class="col-md-4">
-    <img src="{{ "/img/profile.jpg" | relative_url }}" alt="Portrait of {{ site.author | escape }}" class="img-fluid rounded-circle mb-4">
+    <img src="{{ "/img/profile-placeholder.svg" | relative_url }}" alt="Portrait placeholder for {{ site.author | escape }}" class="img-fluid rounded-circle mb-4 border">
+    <p class="small text-muted">Replace <code>img/profile-placeholder.svg</code> with your headshot when ready.</p>
   </div>
   <div class="col-md-8">
     <h2 class="mb-3">Hi, I’m {{ site.author | escape }}.</h2>
@@ -18,8 +19,9 @@ background: '/img/bg-index.jpg'
 <hr>
 
 <h3>Recent Articles</h3>
-<p class="text-muted">Highlights from my Substack/Medium writing.</p>
+<p class="text-muted">Latest writing from Substack (synced automatically each day via GitHub Actions).</p>
 
+{% if site.data.articles and site.data.articles.size > 0 %}
 {% for article in site.data.articles limit: 3 %}
 <article class="post-preview">
   <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">
@@ -34,6 +36,10 @@ background: '/img/bg-index.jpg'
 </article>
 <hr>
 {% endfor %}
+{% else %}
+<p>The article feed has not populated yet. Visit <a href="{{ site.substack_url }}" target="_blank" rel="noopener noreferrer">my Substack</a> directly, or run the <code>Fetch Substack Articles</code> GitHub Action once.</p>
+<hr>
+{% endif %}
 
 <div class="clearfix">
   <a class="btn btn-primary float-right" href="{{ "/articles" | relative_url }}">View All Articles &rarr;</a>
@@ -45,6 +51,8 @@ background: '/img/bg-index.jpg'
 <ul>
   <li>Chancellor’s Award for Excellence in Undergraduate Research</li>
   <li>UROP Symposium Finalist</li>
+  <li>UCI UROP Research Award recipient ($2,000) for interdisciplinary biological ML research</li>
+  <li>Calit2 IRT-funded interdisciplinary research contributor ($2,000 award)</li>
 </ul>
 
 <hr>
@@ -52,8 +60,17 @@ background: '/img/bg-index.jpg'
 <h3>Selected Projects</h3>
 <p class="text-muted">A few things I’ve built or shipped.</p>
 
-<ul>
-  <li><strong>[Project Name]:</strong> One sentence about the project and its impact.</li>
-  <li><strong>[Project Name]:</strong> One sentence about the project and its impact.</li>
-  <li><strong>[Project Name]:</strong> One sentence about the project and its impact.</li>
-</ul>
+{% for project in site.data.projects limit: 3 %}
+<div class="mb-4">
+  <p class="mb-1"><strong>{{ project.name }}</strong></p>
+  <p class="mb-1">{{ project.summary }}</p>
+  <p class="text-muted mb-0">{{ project.tags }}</p>
+  {% if project.link %}
+  <p class="mb-0"><a href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+  {% endif %}
+</div>
+{% endfor %}
+
+<div class="clearfix">
+  <a class="btn btn-primary float-right" href="{{ "/projects" | relative_url }}">View All Projects &rarr;</a>
+</div>

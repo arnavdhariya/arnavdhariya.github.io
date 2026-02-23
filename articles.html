@@ -1,12 +1,13 @@
 ---
 layout: page
 title: Articles
-description: Essays and posts from Substack and Medium.
+description: Essays and technical notes from Substack.
 background: '/img/bg-post.jpg'
 ---
 
-<p>Long-form writing on research, software, and ideas in progress.</p>
+<p>Long-form writing on research, software, and ideas in progress. This page syncs from <a href="{{ site.substack_url }}" target="_blank" rel="noopener noreferrer">Substack</a> once per day.</p>
 
+{% if site.data.articles and site.data.articles.size > 0 %}
 {% for article in site.data.articles %}
 <article class="post-preview">
   <a href="{{ article.url }}" target="_blank" rel="noopener noreferrer">
@@ -21,3 +22,7 @@ background: '/img/bg-post.jpg'
 </article>
 <hr>
 {% endfor %}
+{% else %}
+<p>The Substack feed has not been fetched yet. Trigger the <code>Fetch Substack Articles</code> workflow in GitHub Actions to populate this page immediately.</p>
+<p><a class="btn btn-primary" href="{{ site.substack_url }}" target="_blank" rel="noopener noreferrer">Visit Substack</a></p>
+{% endif %}

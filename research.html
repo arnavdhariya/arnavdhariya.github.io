@@ -6,27 +6,27 @@ background: '/img/bg-about.jpg'
 ---
 
 <h2>Research Focus</h2>
-<p>My work explores <strong>[area]</strong> with emphasis on <strong>[methods / themes]</strong>. I am especially interested in <strong>[sub-areas]</strong>.</p>
-
-<hr>
+<p>My research sits at the intersection of intelligent systems, algorithms, and applied machine learning. I build computational tools and experimental frameworks for privacy-preserving ML, distributed systems simulation, and biological data modeling, while also contributing to climate-focused evidence synthesis and reproducibility analysis. Across projects, I prioritize rigorous evaluation design, reproducible pipelines, and systems-aware implementations that can scale beyond toy settings.</p>
 
 <hr>
 
 <h2>Publications</h2>
-<p class="text-muted">Add your papers here so they can be indexed by Google Scholar.</p>
+<p class="text-muted">Selected publications and preprints. I include DOI, preprint, and PDF links where available.</p>
 
 {% for pub in site.data.publications %}
-<div class="mb-4">
-  <p class="mb-1"><strong>{{ pub.title }}</strong></p>
-  <p class="mb-1">{{ pub.authors }}</p>
-  <p class="text-muted mb-1">{{ pub.venue }} ({{ pub.year }})</p>
+<article class="mb-4" itemscope itemtype="https://schema.org/ScholarlyArticle">
+  <p class="mb-1"><strong itemprop="name">{{ pub.title }}</strong></p>
+  <p class="mb-1" itemprop="author">{{ pub.authors }}</p>
+  <p class="text-muted mb-1"><span itemprop="isPartOf">{{ pub.venue }}</span> (<span itemprop="datePublished">{{ pub.year }}</span>)</p>
   <p class="mb-0">
     {% if pub.pdf %}<a href="{{ pub.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>{% endif %}
     {% if pub.pdf and pub.url %} • {% endif %}
-    {% if pub.url %}<a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Publisher</a>{% endif %}
+    {% if pub.url %}<a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Preprint</a>{% endif %}
+    {% if pub.doi %} • <a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener noreferrer">DOI</a>{% endif %}
     {% if pub.code %} • <a href="{{ pub.code }}" target="_blank" rel="noopener noreferrer">Code</a>{% endif %}
   </p>
-</div>
+  {% if pub.doi %}<meta itemprop="identifier" content="doi:{{ pub.doi }}">{% endif %}
+</article>
 <hr>
 {% endfor %}
 
@@ -42,7 +42,12 @@ background: '/img/bg-about.jpg'
   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/BR4FiOCcmdU" allowfullscreen></iframe>
 </div>
 
-<p><strong>Abstract:</strong> Simulated Annealing Haplotype Aligner (SAHap), a C++ application, tackles the challenge of separating parental genome sequences from lossy end reads. Rather than merging all reads into a single genome, similar to all other genome sequencing algorithms, it treats each read as belonging to one of the two (or more, in polyploid cases) haplotypes. It seeks the configuration that will minimize the total weighted mismatch between reads and their assigned sequence (wMEC). Reads have already been sequenced into the right position (site). SAHap shuffles these assignments randomly and then assesses the change in error. It gradually tightens the search; swaps that reduce the overall wMEC are always kept, while those that increase it are allowed early on to avoid getting stagnant at a local minimum similar to other algorithms like the hill climb. According to the temperature schedule, a method to gradually phase out acceptance of bad moves, it is decided which move will be accepted. Thus, guiding the program toward a decent arrangement of reads into haplotype groups. Currently, this algorithm works and minimizes error successfully however it leaves areas of high wMEC that do not reach the optimal solution. To smooth out errors in these segments, SAHap will fuse consecutive, vertical, perfectly matching reads into longer super-reads, based on the MaSURca assembler. Combining reads minimizes the amount of variables thus enabling the ability to get a better solution. Another proposed solution is to run the simulated annealing algorithm again on the windows of high wMEC. When tested on datasets of five hundred and then twenty-thousand reads, this two-stage approach with super-reads will consistently deliver lower error scores. The SAHap assembler will be able to reach a better solution in a quicker time due to the algorithm and super-reads.</p>
+<h4>Abstract</h4>
+<p>Simulated Annealing Haplotype Aligner (SAHap), a C++ application, tackles the challenge of separating parental genome sequences from lossy end reads. Rather than merging all reads into a single genome, similar to most genome sequencing algorithms, it treats each read as belonging to one of two haplotypes (or more, in polyploid cases). The system seeks the configuration that minimizes the total weighted mismatch between reads and their assigned sequence (wMEC).</p>
+
+<p>Reads are already sequenced into the correct positions (sites). SAHap shuffles haplotype assignments randomly and then assesses the resulting change in error. It gradually tightens the search: swaps that reduce overall wMEC are always kept, while swaps that increase error can still be accepted early in the run to avoid stagnation in local minima, similar to issues seen in hill-climbing approaches. A temperature schedule gradually phases out acceptance of worse moves, guiding the program toward a stronger arrangement of reads into haplotype groups.</p>
+
+<p>At present, the algorithm minimizes error successfully but can leave high-wMEC segments that do not reach the optimal solution. To smooth errors in these regions, SAHap fuses consecutive, vertical, perfectly matching reads into longer super-reads (based on the MaSURca assembler), reducing the number of variables and enabling better solutions. Another proposed improvement is rerunning simulated annealing on windows with high wMEC. When tested on datasets of five hundred and then twenty-thousand reads, this two-stage approach with super-reads is expected to deliver lower error scores while improving runtime.</p>
 
 <h2>Labs</h2>
 <p class="text-muted">Groups and labs I’m affiliated with.</p>

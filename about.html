@@ -6,22 +6,27 @@ background: '/img/bg-about.jpg'
 ---
 
 <h2>Bio</h2>
-<p>[Add a short bio: your research interests, how you got into them, and what motivates you.]</p>
+<p>I am an undergraduate Computer Science student at UC Irvine specializing in intelligent systems, with research experience across privacy-preserving machine learning, computational biology, distributed systems, and climate-focused literature analysis. My work is centered on building rigorous experimental pipelines and algorithmic tools that help answer difficult real-world questions with measurable evidence. I enjoy research that sits between theory and systems implementation, especially when it requires careful benchmarking, simulation, and reproducibility. Outside the lab, I write technical essays, play harmonium, and spend too much time refining plots and abstractions.</p>
 
 <hr>
 
 <h2>Resume</h2>
-<p>Embed or link your resume PDF here.</p>
+<p>An embedded PDF version is shown below, with direct download links to both PDF and DOCX formats.</p>
 <div class="embed-responsive embed-responsive-4by3 mb-3">
   <iframe class="embed-responsive-item" src="{{ "/assets/resume.pdf" | relative_url }}"></iframe>
 </div>
 <p><a href="{{ "/assets/resume.pdf" | relative_url }}" target="_blank" rel="noopener noreferrer">Download Resume (PDF)</a></p>
+<p><a href="{{ "/assets/Master_Resume.docx" | relative_url }}" target="_blank" rel="noopener noreferrer">Download Resume (DOCX)</a></p>
 
 <hr>
 
 <h2>Contact</h2>
 <p>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+<p>Phone: <a href="tel:+16506844796">{{ site.phone }}</a></p>
 <p>GitHub: <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">@{{ site.github_username }}</a></p>
 {% if site.linkedin_username %}
-<p>LinkedIn: <a href="https://www.linkedin.com/in/{{ site.linkedin_username | replace: ' ', '' }}" target="_blank" rel="noopener noreferrer">{{ site.linkedin_username }}</a></p>
+<p>LinkedIn: <a href="https://www.linkedin.com/in/{{ site.linkedin_username | replace: ' ', '' }}" target="_blank" rel="noopener noreferrer">linkedin.com/in/{{ site.linkedin_username | replace: ' ', '' }}</a></p>
+{% endif %}
+{% if site.substack_url %}
+<p>Substack: <a href="{{ site.substack_url }}" target="_blank" rel="noopener noreferrer">{{ site.substack_url }}</a></p>
 {% endif %}

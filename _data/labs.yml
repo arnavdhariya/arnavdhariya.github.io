@@ -1,7 +1,27 @@
-- name: "Lab / Group Name"
-  role: "Role or affiliation"
-  url: "https://example.com/lab"
+- name: "Mehrotra Lab (Sharad's Lab) @ UCI"
+  role: "Undergraduate Researcher (Aug 2025 - Present)"
+  url:
 
-- name: "Lab / Group Name"
-  role: "Role or affiliation"
+- name: "Zhang Lab @ UCI"
+  role: "Undergraduate Researcher (Aug 2025 - Present)"
+  url:
+
+- name: "Network, Systems, and AI Lab (NetSAIL) @ UCI"
+  role: "Undergraduate Researcher (Aug 2025 - Present)"
+  url:
+
+- name: "Dr. Wayne Hayes Research Group @ UCI"
+  role: "Research Team Lead / Undergraduate Researcher (Sep 2024 - Sep 2025)"
+  url:
+
+- name: "Green IT Lab"
+  role: "Literature Reviewer / Researcher (Jan 2025 - Mar 2025)"
+  url:
+
+- name: "Computer Vision Lab @ UCI"
+  role: "Undergraduate Researcher (Aug 2025 - Jan 2026)"
+  url:
+
+- name: "INsite Lab @ UCI"
+  role: "Research Team Lead (Jun 2025 - Dec 2025)"
   url:

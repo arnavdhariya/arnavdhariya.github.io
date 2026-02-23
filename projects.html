@@ -5,10 +5,16 @@ description: Selected projects and experiments.
 background: '/img/bg-post.jpg'
 ---
 
-<p>Showcase key projects with short descriptions and links.</p>
+<p>Research-driven systems and algorithmic projects spanning computational biology, privacy-preserving ML, and distributed infrastructure.</p>
 
-<ul>
-  <li><strong>Project One:</strong> One sentence on what it does and why it matters.</li>
-  <li><strong>Project Two:</strong> One sentence on the core idea or result.</li>
-  <li><strong>Project Three:</strong> One sentence on tech stack or outcome.</li>
-</ul>
+{% for project in site.data.projects %}
+<article class="post-preview">
+  <h2 class="post-title">{{ project.name }}</h2>
+  <h3 class="post-subtitle">{{ project.summary }}</h3>
+  <p class="post-meta">{{ project.tags }}</p>
+  {% if project.link %}
+  <p><a href="{{ project.link }}" target="_blank" rel="noopener noreferrer">Project Link</a></p>
+  {% endif %}
+</article>
+<hr>
+{% endfor %}

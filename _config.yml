@@ -1,13 +1,15 @@
 title:              Arnav Dhariya
-email:              your-email@example.com
+email:              arnavdhariya24@gmail.com
 description:        Researcher | Writer | Programmer
 author:             Arnav Dhariya
 url: "https://arnavdhariya.github.io"
 baseurl: ""
+phone: "(650) 684-4796"
+substack_url: "https://arnavdhariya.substack.com/"
 
 # Social Profiles
 github_username:    arnavdhariya
-linkedin_username: Arnav Dhariya
+linkedin_username: arnavdhariya
 
 # Add your google-analytics ID here to activate google analytics
 google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
