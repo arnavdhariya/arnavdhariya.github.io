@@ -3,715 +3,735 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arnav Dhariya — Researcher</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Arnav Dhariya · Database Systems & Agentic AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --teal:#10b981;--teal-d:#059669;--teal-l:#34d399;
-  --cyan:#06b6d4;--cyan-l:#22d3ee;
-  --red:#ef4444;
-  --bg:#030c08;--glass:rgba(3,12,8,0.78);--glass2:rgba(5,18,12,0.90);
-  --border:rgba(16,185,129,0.13);--border2:rgba(16,185,129,0.26);
-  --text:#dff0e8;--muted:#5e9e80;
-  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;
-  --nav-h:62px;
+--paper:#FAF8F4;
+--paper-warm:#F4F0E8;
+--ink:#1E1C18;
+--ink-soft:#4A4640;
+--muted:#9A9286;
+--rule:#E4DED2;
+--accent:#2B4570;
+--accent-soft:#E8EDF4;
+--serif:'Source Serif 4',serif;
+--sans:'Inter',sans-serif;
+--mono:'IBM Plex Mono',monospace;
+--max:760px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;cursor:none;overflow-x:hidden;min-height:100vh;}
-a{color:inherit;}
+body{
+background:var(--paper);
+color:var(--ink);
+font-family:var(--sans);
+font-size:16px;
+line-height:1.7;
+-webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+::selection{background:var(--accent-soft);}
+.skip{position:absolute;left:-9999px;}
+.skip:focus{left:1rem;top:1rem;background:var(--ink);color:var(--paper);padding:.5rem 1rem;z-index:1000;border-radius:3px;}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{
+outline:2px solid var(--accent);outline-offset:2px;
+}
 
-/* CURSOR */
-#cursor,#cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);}
-#cursor{width:9px;height:9px;background:var(--teal-l);mix-blend-mode:screen;}
-#cursor-ring{width:34px;height:34px;border:1px solid rgba(52,211,153,0.45);transition:width .25s,height .25s,border-color .25s;}
-body.hovering #cursor-ring{width:50px;height:50px;border-color:rgba(52,211,153,0.7);}
+/* ===== NAV ===== */
+header{
+border-bottom:1px solid var(--rule);
+position:sticky;top:0;z-index:50;
+background:rgba(250,248,244,0.94);
+backdrop-filter:blur(8px);
+}
+.nav-inner{
+max-width:var(--max);margin:0 auto;
+padding:1.1rem 1.5rem;
+display:flex;align-items:center;justify-content:space-between;
+gap:1rem;flex-wrap:wrap;
+}
+.nav-name{
+font-family:var(--serif);font-size:1.05rem;font-weight:600;
+color:var(--ink);letter-spacing:.01em;
+}
+nav.links{display:flex;gap:1.4rem;flex-wrap:wrap;}
+nav.links a{
+font-family:var(--mono);font-size:12px;letter-spacing:.04em;
+color:var(--ink-soft);text-decoration:none;
+padding-bottom:2px;border-bottom:1px solid transparent;
+transition:border-color .15s,color .15s;
+}
+nav.links a:hover,nav.links a.active{color:var(--ink);border-color:var(--accent);}
 
-/* CANVAS */
-#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+/* ===== LAYOUT ===== */
+main{max-width:var(--max);margin:0 auto;padding:0 1.5rem;}
+section{padding:3.2rem 0;border-bottom:1px solid var(--rule);}
+section:last-of-type{border-bottom:none;}
+.eyebrow{
+font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--muted);margin-bottom:.6rem;
+}
+h1{
+font-family:var(--serif);font-weight:600;
+font-size:clamp(2.1rem,5vw,3rem);
+line-height:1.18;letter-spacing:-.01em;
+color:var(--ink);margin-bottom:.9rem;
+}
+h2{
+font-family:var(--serif);font-weight:600;
+font-size:clamp(1.4rem,3vw,1.8rem);
+letter-spacing:-.005em;color:var(--ink);margin-bottom:1.4rem;
+}
+h3{
+font-family:var(--serif);font-weight:600;font-size:1.08rem;
+color:var(--ink);line-height:1.4;
+}
+p{color:var(--ink-soft);font-weight:400;}
+p+p{margin-top:.9rem;}
+.lede{
+font-family:var(--serif);font-size:1.18rem;line-height:1.7;
+color:var(--ink-soft);max-width:60ch;
+}
+.lede a{color:var(--accent);}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.2rem,4vw,3.5rem);background:rgba(3,12,8,0.84);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
-.nav-logo{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--teal-l);letter-spacing:.04em;text-decoration:none;display:flex;align-items:center;gap:8px;}
-.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--teal-l);animation:blink 2s infinite;}
-.nav-links{display:flex;gap:.1rem;list-style:none;}
-.nav-link{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:6px 11px;border-radius:3px;transition:color .2s,background .2s;cursor:none;}
-.nav-link:hover,.nav-link.active{color:var(--teal-l);background:rgba(16,185,129,.07);}
+/* ===== HERO ===== */
+.hero{padding:3.4rem 0 3rem;}
+.hero-meta{
+display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:1.4rem;
+font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);
+}
+.hero-meta a{color:var(--ink-soft);border-bottom:1px solid var(--rule);}
+.hero-meta a:hover{color:var(--accent);border-color:var(--accent);}
+.hero-meta span.sep{color:var(--rule);}
 
-/* PAGES */
-.page{display:none;min-height:100vh;position:relative;z-index:10;padding-top:var(--nav-h);}
-.page.active{display:block;}
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:140px 1fr;gap:2.2rem;align-items:start;}
+.portrait-placeholder{
+width:140px;height:140px;
+border-radius:4px;
+background:var(--paper-warm);
+border:1px solid var(--rule);
+display:flex;align-items:center;justify-content:center;
+font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+color:var(--muted);text-align:center;padding:1rem;line-height:1.6;
+flex-shrink:0;
+}
+.about-grid img.portrait{
+width:140px;height:180px;
+border-radius:4px;
+object-fit:cover;
+object-position:center top;
+border:1px solid var(--rule);
+flex-shrink:0;
+display:block;
+}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.3rem;}
+.tag{
+font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+color:var(--ink-soft);border:1px solid var(--rule);
+border-radius:3px;padding:3px 9px;background:var(--paper-warm);
+}
 
-/* LAYOUT */
-.page-inner{max-width:1080px;margin:0 auto;padding:5rem clamp(1.2rem,5vw,3.5rem);}
-.sec-label{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem;display:flex;align-items:center;gap:10px;}
-.sec-label::after{content:'';width:40px;height:1px;background:var(--teal-d);}
-h2{font-family:var(--mono);font-weight:300;font-size:clamp(1.9rem,4vw,3rem);letter-spacing:-.015em;color:#fff;margin-bottom:2.5rem;line-height:1.15;}
-h2 em{color:var(--teal-l);font-style:normal;}
+/* ===== PUBLICATIONS ===== */
+.pub-list{display:flex;flex-direction:column;}
+.pub{
+padding:1.5rem 0;border-top:1px solid var(--rule);
+display:grid;grid-template-columns:1fr;gap:.5rem;
+}
+.pub:first-child{border-top:none;}
+.pub-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;}
+.pub-venue{
+font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+color:var(--accent);white-space:nowrap;
+}
+.pub h3{margin-bottom:.15rem;}
+.pub-authors{font-size:13.5px;color:var(--muted);}
+.pub-authors strong{color:var(--ink-soft);font-weight:500;}
+.pub-abstract{font-size:14px;color:var(--ink-soft);line-height:1.75;max-width:64ch;}
+.pub-links{display:flex;gap:1.1rem;flex-wrap:wrap;margin-top:.3rem;}
+.pub-links a{
+font-family:var(--mono);font-size:12px;letter-spacing:.03em;
+border-bottom:1px solid var(--rule);
+}
+.pub-links a:hover{border-color:var(--accent);text-decoration:none;}
 
-/* HOME */
-.hero{min-height:calc(100vh - var(--nav-h));display:flex;flex-direction:column;justify-content:center;padding:0 clamp(1.5rem,8vw,8rem) 4rem;position:relative;}
-.hero-badge{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:8px;margin-bottom:1.6rem;}
-h1{font-family:var(--mono);font-weight:300;font-size:clamp(3rem,8vw,7rem);line-height:1.02;letter-spacing:-.025em;color:#fff;margin-bottom:1.8rem;}
-h1 .acc{color:var(--teal-l);}
-.hero-line{font-size:1.05rem;font-weight:300;color:var(--muted);max-width:540px;line-height:1.85;margin-bottom:2.5rem;}
-.hero-line strong{color:var(--text);font-weight:400;}
-#tw{color:var(--teal-l);font-family:var(--mono);font-style:italic;}
-#twc{display:inline-block;width:2px;height:.9em;background:var(--teal-l);vertical-align:middle;margin-left:2px;animation:blink .85s step-end infinite;}
-.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;}
-.btn-p,.btn-o{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:11px 26px;border-radius:3px;cursor:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
-.btn-p{background:var(--teal);color:#021008;}
-.btn-p:hover{background:var(--teal-l);transform:translateY(-1px);}
-.btn-o{border:1px solid var(--border2);color:var(--teal-l);}
-.btn-o:hover{background:rgba(16,185,129,.07);border-color:var(--teal);transform:translateY(-1px);}
-.hero-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);opacity:.45;display:flex;flex-direction:column;align-items:center;gap:6px;}
-.hint-arr{width:1px;height:24px;background:var(--muted);animation:ad 1.6s ease infinite;}
-@keyframes ad{0%,100%{transform:scaleY(1);opacity:.5}50%{transform:scaleY(1.4);opacity:1}}
+/* ===== RESEARCH / EXPERIENCE ===== */
+.exp-list{display:flex;flex-direction:column;}
+.exp{padding:1.5rem 0;border-top:1px solid var(--rule);}
+.exp:first-child{border-top:none;}
+.exp-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;}
+.exp-org{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.exp-period{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;}
+.exp p{font-size:14.5px;margin-top:.5rem;max-width:64ch;}
+.exp ul{margin-top:.5rem;padding-left:1.2rem;max-width:64ch;}
+.exp ul li{font-size:14.5px;color:var(--ink-soft);margin-bottom:.3rem;line-height:1.6;}
+.exp .tags{margin-top:.8rem;}
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:260px 1fr;gap:3.5rem;align-items:start;}
-.img-ph{aspect-ratio:3/4;border-radius:6px;border:1px dashed var(--border2);background:rgba(16,185,129,.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;color:var(--muted);}
-.img-ph-icon{width:60px;height:60px;border-radius:50%;border:1.5px dashed var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
-.img-ph p{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;}
-.img-ph small{font-size:9px;color:var(--teal-d);font-family:var(--mono);text-align:center;padding:0 1rem;line-height:1.6;}
-.bio p{color:var(--muted);font-weight:300;margin-bottom:1.1rem;line-height:1.85;}
-.bio p strong{color:var(--text);font-weight:500;}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:1.8rem;}
-.tag{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border:1px solid var(--border2);border-radius:2px;color:var(--teal-l);background:rgba(16,185,129,.04);}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:2rem;border:1px solid var(--border);border-radius:6px;overflow:hidden;}
-.stat{padding:1.2rem 1rem;background:var(--glass2);text-align:center;}
-.stat-n{font-family:var(--mono);font-size:1.8rem;font-weight:500;color:var(--teal-l);}
-.stat-l{font-size:11px;color:var(--muted);margin-top:2px;}
+/* ===== PRESENTATIONS ===== */
+.pres-list{display:flex;flex-direction:column;margin-bottom:2rem;}
+.pres{padding:1rem 0;border-top:1px solid var(--rule);}
+.pres:first-child{border-top:none;}
+.pres-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;}
+.pres-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);}
+.pres-venue{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);white-space:nowrap;}
+.pres-authors{font-size:13px;color:var(--muted);margin-top:.25rem;}
 
-/* EXPAND CARDS */
-.expand-list{display:flex;flex-direction:column;gap:2px;}
-.xcard{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--glass2);transition:border-color .25s;}
-.xcard:hover{border-color:var(--border2);}
-.xcard.open{border-color:rgba(16,185,129,.38);}
-.xhead{display:grid;align-items:center;gap:1.2rem;padding:1.2rem 1.4rem;cursor:none;transition:background .2s;}
-.xhead:hover{background:rgba(16,185,129,.04);}
-.xhead.rh{grid-template-columns:52px 1fr auto 20px;}
-.xhead.ph{grid-template-columns:52px 1fr auto 20px;}
-.org-logo{width:48px;height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.04em;flex-shrink:0;border:1px solid rgba(255,255,255,.08);}
-.org-logo img{width:100%;height:100%;object-fit:contain;border-radius:8px;}
-.ct{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px;}
-.cs{font-family:var(--mono);font-size:11px;color:var(--muted);}
-.pill{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:2px;white-space:nowrap;align-self:center;}
-.pill.active{color:var(--teal-l);border:1px solid var(--teal-d);background:rgba(16,185,129,.07);}
-.pill.done{color:var(--muted);border:1px solid rgba(94,158,128,.3);}
-.pill.award{color:var(--cyan-l);border:1px solid rgba(6,182,212,.35);background:rgba(6,182,212,.06);}
-.pill.pre{color:#fbbf24;border:1px solid rgba(251,191,36,.35);background:rgba(251,191,36,.05);}
-.chev{color:var(--muted);font-size:12px;transition:transform .3s,color .2s;align-self:center;}
-.xcard.open .chev{transform:rotate(180deg);color:var(--teal-l);}
-.xbody{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1);}
-.xcard.open .xbody{max-height:620px;}
-.xcontent{padding:1.4rem;border-top:1px solid var(--border);}
-.xdesc{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:1.2rem;}
-.xlinks{display:flex;flex-wrap:wrap;gap:.6rem;}
-.xl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--border2);border-radius:2px;color:var(--teal-l);text-decoration:none;cursor:none;transition:background .2s,border-color .2s;display:inline-flex;align-items:center;gap:5px;}
-.xl:hover{background:rgba(16,185,129,.07);border-color:var(--teal);}
-.tech{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.2rem;}
-.tp{font-family:var(--mono);font-size:9px;letter-spacing:.08em;padding:3px 8px;background:rgba(16,185,129,.06);border:1px solid var(--border);border-radius:2px;color:var(--muted);}
-.media-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1.2rem;}
-.mthumb{aspect-ratio:16/9;border-radius:4px;border:1px dashed var(--border2);background:rgba(16,185,129,.03);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;}
-.mthumb .mi{font-size:1.4rem;opacity:.5;}
+/* ===== MEDIA (Posters / Video) ===== */
+.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;margin-top:1.4rem;}
+.media-item{}
+.media-item h3{font-size:.95rem;margin-bottom:.6rem;}
+.media-embed{
+width:100%;
+border:1px solid var(--rule);
+border-radius:4px;
+background:var(--paper-warm);
+overflow:hidden;
+}
+.media-embed iframe{
+display:block;width:100%;border:none;
+}
+.media-embed.poster-embed iframe{height:420px;}
+.media-embed.video-embed{aspect-ratio:16/9;}
+.media-embed.video-embed iframe{height:100%;}
+.media-caption{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:.5rem;line-height:1.5;}
+.media-full{margin-top:2rem;}
 
-/* BLOG */
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
-.bcard{border:1px solid var(--border);border-radius:6px;background:var(--glass2);padding:1.5rem;transition:border-color .25s,transform .2s;cursor:none;}
-.bcard:hover{border-color:var(--border2);transform:translateY(-2px);}
-.bmeta{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:.8rem;display:flex;gap:1rem;}
-.btitle{font-family:var(--mono);font-size:.95rem;font-weight:500;color:var(--text);margin-bottom:.6rem;line-height:1.3;}
-.bex{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1rem;}
-.btags{display:flex;gap:5px;flex-wrap:wrap;}
-.btag{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--border2);border-radius:2px;color:var(--teal-d);}
+/* ===== AWARDS ===== */
+.award-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.4rem;}
+.award{
+font-size:14.5px;color:var(--ink-soft);
+padding:.6rem 0;border-top:1px solid var(--rule);
+display:flex;align-items:baseline;gap:.8rem;
+}
+.award:first-child{border-top:none;}
+.award-label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--accent);white-space:nowrap;}
 
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
-.ci-title{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:1.2rem;}
-.ci-body p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:1.2rem;}
-.socials{display:flex;flex-direction:column;gap:.5rem;}
-.slink{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--border2);border-radius:3px;color:var(--teal-l);text-decoration:none;cursor:none;display:flex;align-items:center;gap:8px;transition:background .2s,border-color .2s;}
-.slink:hover{background:rgba(16,185,129,.07);border-color:var(--teal);}
-.cform{display:flex;flex-direction:column;gap:1rem;}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.fg{display:flex;flex-direction:column;gap:.4rem;}
-.fl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
-.fi,.fta{background:rgba(16,185,129,.04);border:1px solid var(--border2);border-radius:4px;padding:.75rem 1rem;color:var(--text);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;}
-.fi::placeholder,.fta::placeholder{color:var(--muted);opacity:.6;}
-.fi:focus,.fta:focus{border-color:var(--teal);background:rgba(16,185,129,.07);}
-.fta{resize:vertical;min-height:120px;}
-.fsub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;border-radius:3px;background:var(--teal);color:#021008;border:none;cursor:none;transition:background .2s,transform .15s;align-self:flex-start;}
-.fsub:hover{background:var(--teal-l);transform:translateY(-1px);}
-.fmsg{font-family:var(--mono);font-size:11px;color:var(--teal-l);padding:.6rem;display:none;}
+/* ===== WRITING ===== */
+.medium-header{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.4rem;flex-wrap:wrap;}
+.medium-all{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);border-bottom:1px solid var(--rule);}
+.medium-all:hover{color:var(--accent);border-color:var(--accent);text-decoration:none;}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.card{
+background:#fff;border:1px solid var(--rule);border-radius:5px;
+overflow:hidden;display:flex;flex-direction:column;
+transition:box-shadow .15s,border-color .15s;
+text-decoration:none;
+}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.07);border-color:#ccc;text-decoration:none;}
+.card-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--paper-warm);}
+.card-thumb-placeholder{width:100%;aspect-ratio:16/9;background:var(--paper-warm);display:flex;align-items:center;justify-content:center;}
+.card-thumb-placeholder span{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.card-body{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.4rem;flex:1;}
+.card-title{font-family:var(--serif);font-size:1rem;font-weight:600;line-height:1.35;color:var(--ink);}
+.card-excerpt{font-size:13px;color:var(--ink-soft);line-height:1.6;flex:1;}
+.card-meta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:.5rem;}
+.medium-loading{font-family:var(--mono);font-size:12px;color:var(--muted);}
+@media(max-width:640px){.card-grid{grid-template-columns:1fr;}}
 
-/* FOOTER */
-footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:1.2rem clamp(1.2rem,4vw,3.5rem);display:flex;justify-content:space-between;align-items:center;background:rgba(3,12,8,.92);}
-footer p{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.06em;}
-.fp{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--muted);}
-.pd{width:6px;height:6px;border-radius:50%;background:var(--teal-l);animation:blink 1.8s infinite;}
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:3rem;align-items:start;}
+.contact-links{display:flex;flex-direction:column;gap:.5rem;margin-top:1.2rem;}
+.contact-links a{font-family:var(--mono);font-size:13px;}
+.cform{display:flex;flex-direction:column;gap:.9rem;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.fg{display:flex;flex-direction:column;gap:.35rem;}
+.fl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.fi,.fta{
+background:#fff;border:1px solid var(--rule);border-radius:3px;
+padding:.6rem .8rem;color:var(--ink);font-family:var(--sans);font-size:14px;
+outline:none;transition:border-color .15s;
+}
+.fi::placeholder,.fta::placeholder{color:var(--muted);}
+.fi:focus,.fta:focus{border-color:var(--accent);}
+.fta{resize:vertical;min-height:100px;}
+.fsub{
+font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+padding:.7rem 1.4rem;border-radius:3px;background:var(--ink);color:var(--paper);
+border:none;cursor:pointer;transition:background .15s;align-self:flex-start;
+}
+.fsub:hover{background:var(--accent);}
+.fsub:disabled{opacity:.6;cursor:default;}
+.fmsg{font-family:var(--mono);font-size:12px;color:var(--accent);display:none;}
 
-/* ANIMS */
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.fi{animation:fadeUp .7s ease both;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}
+/* ===== FOOTER ===== */
+footer{
+max-width:var(--max);margin:0 auto;padding:2rem 1.5rem 3rem;
+display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;
+}
+footer p{font-family:var(--mono);font-size:11px;color:var(--muted);}
 
-/* RESPONSIVE */
-@media(max-width:720px){
-  .about-grid,.contact-grid{grid-template-columns:1fr;}
-  .frow{grid-template-columns:1fr;}
-  .xhead.rh,.xhead.ph{grid-template-columns:44px 1fr 18px;}
-  .pill{display:none;}
-  h1{font-size:clamp(2.4rem,10vw,3.5rem);}
-  .nav-link{padding:5px 7px;font-size:9px;}
+/* ===== RESPONSIVE ===== */
+@media(max-width:640px){
+.about-grid,.contact-grid{grid-template-columns:1fr;}
+.portrait-placeholder,.about-grid img.portrait{width:110px;height:110px;}
+.frow{grid-template-columns:1fr;}
+nav.links{gap:1rem;}
+.pub-top,.exp-top{flex-direction:column;align-items:flex-start;gap:.2rem;}
+.media-grid{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto;}
 }
 </style>
 </head>
 <body>
-
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-<canvas id="bg-canvas"></canvas>
-
-<nav>
-  <a href="#" class="nav-logo" onclick="go('home');return false;"><div class="nav-dot"></div>Arnav Dhariya</a>
-  <ul class="nav-links">
-    <li><a class="nav-link active" data-page="home"         href="#" onclick="go('home');return false;">Home</a></li>
-    <li><a class="nav-link"        data-page="about"        href="#" onclick="go('about');return false;">About</a></li>
-    <li><a class="nav-link"        data-page="research"     href="#" onclick="go('research');return false;">Research</a></li>
-    <li><a class="nav-link"        data-page="publications" href="#" onclick="go('publications');return false;">Publications</a></li>
-    <li><a class="nav-link"        data-page="blog"         href="#" onclick="go('blog');return false;">Blog</a></li>
-    <li><a class="nav-link"        data-page="contact"      href="#" onclick="go('contact');return false;">Contact</a></li>
-  </ul>
+<a href="#main" class="skip">Skip to content</a>
+<header>
+<div class="nav-inner">
+<a href="#top" class="nav-name">AD</a>
+<nav class="links" aria-label="Section navigation">
+<a href="#about">About</a>
+<a href="#publications">Publications</a>
+<a href="#research">Research</a>
+<a href="#media">Media</a>
+<a href="#writing">Writing</a>
+<a href="#contact">Contact</a>
 </nav>
-
-<!-- HOME -->
-<div id="page-home" class="page active">
-  <section class="hero">
-    <div class="hero-badge fi d1">Researcher &nbsp;·&nbsp; Systems &nbsp;·&nbsp; Databases &nbsp;·&nbsp; AI / ML</div>
-    <h1 class="fi d2">Arnav<br><span class="acc">Dhariya</span></h1>
-    <p class="hero-line fi d3">
-      I research <span id="tw"><span id="twt"></span><span id="twc"></span></span><br>
-      at <strong>University of California, Irvine.</strong>
-    </p>
-    <div class="hero-btns fi d4">
-      <a class="btn-p" href="#" onclick="go('research');return false;">View Research</a>
-      <a class="btn-o" href="#" onclick="go('contact');return false;">Get in Touch</a>
-    </div>
-    <div class="hero-hint fi d4" style="animation-delay:.7s">
-      <span>hold to block a stream lane</span>
-      <div class="hint-arr"></div>
-    </div>
-  </section>
 </div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+<div class="eyebrow">Database Systems · Distributed Infrastructure · Agentic AI</div>
+<h1>Arnav Dhariya</h1>
+<p class="lede">
+  I'm an undergraduate researcher at the <strong>University of California, Irvine</strong>,
+  graduating June 2027 with a B.S. in Computer Science.
+  My work spans data privacy and deletion, distributed systems for vector search and ML workloads,
+  and agentic AI infrastructure. I work across research groups advised by
+  <strong>Prof. Sharad Mehrotra</strong>, <strong>Prof. Sangeetha Abdu Jyothi</strong>, <strong>Prof. G.P. Li</strong>,
+  <strong>Prof. Wayne Hayes</strong>, and <strong>Prof. Glenn Healy</strong>.
+</p>
+<div class="hero-meta">
+  <a href="mailto:dhariyaa@uci.edu">dhariyaa [at] uci [dot] edu</a>
+  <span class="sep">/</span>
+  <a href="https://scholar.google.com/citations?user=jzSG8DgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+  <span class="sep">/</span>
+  <a href="https://github.com/arnavdhariya" target="_blank" rel="noopener">GitHub</a>
+  <span class="sep">/</span>
+  <a href="https://www.linkedin.com/in/arnav-dhariya-3a2441241/" target="_blank" rel="noopener">LinkedIn</a>
+  <span class="sep">/</span>
+  <a href="https://medium.com/@arnavdhariya24" target="_blank" rel="noopener">Medium</a>
+</div>
+</section>
 
 <!-- ABOUT -->
-<div id="page-about" class="page">
-  <div class="page-inner">
-    <div class="sec-label">About</div>
-    <h2>Who I <em>am</em></h2>
-    <div class="about-grid">
-      <div>
-        <!-- REPLACE this block with <img src="your-photo.jpg" style="width:100%;border-radius:6px;"> -->
-        <div class="img-ph">
-          <div class="img-ph-icon">&#128100;</div>
-          <p>Your Photo Here</p>
-          <small>Replace this div with&lt;br&gt;&lt;img src="photo.jpg"&gt;</small>
-        </div>
-      </div>
-      <div class="bio">
-        <p>I'm a PhD researcher at <strong>University of California, Irvine</strong> working on the systems infrastructure that powers modern AI and real-time analytics. My research sits at the intersection of streaming databases, distributed systems, and ML infrastructure.</p>
-        <p>Advised by <strong>Prof. [Advisor Name]</strong>, I focus on making data pipelines faster, smarter, and more resilient at scale — the kind of work where a 10% improvement means millions of queries per second.</p>
-        <p>Before UCI, I was at <strong>[Previous Institution / Company]</strong> working on [brief description]. I care about systems that are not just theoretically elegant but measurably, provably fast.</p>
-        <div class="tags">
-          <span class="tag">Streaming DBs</span><span class="tag">Distributed Systems</span>
-          <span class="tag">Query Optimization</span><span class="tag">ML Infrastructure</span>
-          <span class="tag">Vector Search</span><span class="tag">Storage Engines</span>
-          <span class="tag">Real-Time Systems</span>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="stat-n">6</div><div class="stat-l">Publications</div></div>
-          <div class="stat"><div class="stat-n">142</div><div class="stat-l">Citations</div></div>
-          <div class="stat"><div class="stat-n">4</div><div class="stat-l">Projects</div></div>
-        </div>
-      </div>
+<section id="about">
+<div class="eyebrow">About</div>
+<div class="about-grid">
+  <img src="profile_pic.png" alt="Arnav Dhariya" class="portrait">
+  <div>
+    <p>
+      I'm an undergraduate at the <strong>University of California, Irvine</strong>,
+      graduating in <strong>June 2027</strong> with a B.S. in Computer Science.
+      Dean's Honor List, 6 quarters.
+    </p>
+    <p>
+      My research sits at the intersection of database systems, distributed infrastructure,
+      and agentic AI. I currently work on privacy-preserving deletion and inference-aware
+      data management in <strong>Sharad's Lab</strong>, distributed vector search infrastructure
+      for large-scale agentic workloads in the <strong>NetSAIL Lab</strong>, energy systems
+      and building automation in <strong>CalPlug</strong>, and previously hyperspectral imaging
+      and haplotype assembly with <strong>Prof. Hayes</strong> and <strong>Prof. Healy</strong>.
+    </p>
+    <p>
+      I'm always happy to talk about query optimization, storage engines, data deletion,
+      agentic systems, or PhD programs. See <a href="#contact">contact</a> below.
+    </p>
+    <div class="tags">
+      <span class="tag">Data Privacy & Deletion</span>
+      <span class="tag">Distributed Systems</span>
+      <span class="tag">Vector Search</span>
+      <span class="tag">Agentic AI Infrastructure</span>
+      <span class="tag">ML Systems</span>
+      <span class="tag">Storage Engines</span>
+      <span class="tag">Query Optimization</span>
     </div>
   </div>
-  <footer><p>© 2025 Arnav Dhariya</p><div class="fp"><div class="pd"></div>Open to opportunities</div></footer>
 </div>
-
-<!-- RESEARCH -->
-<div id="page-research" class="page">
-  <div class="page-inner">
-    <div class="sec-label">Research</div>
-    <h2>What I <em>build</em></h2>
-    <div class="expand-list">
-
-      <div class="xcard" onclick="toggleX(this)">
-        <div class="xhead rh">
-          <div class="org-logo" style="background:rgba(0,100,200,.15);color:#4da6ff;">UCI</div>
-          <div><div class="ct">Graduate Researcher — Real-Time Query Systems</div><div class="cs">University of California, Irvine · 2023 – Present · Prof. [Name]</div></div>
-          <span class="pill active">Active</span><span class="chev">▾</span>
-        </div>
-        <div class="xbody"><div class="xcontent">
-          <p class="xdesc">Designing a query engine that continuously re-optimizes execution plans as data distributions shift in real time. Achieves 3–8× throughput improvement over static plans on skewed workloads. Core focus on adaptive cardinality estimation and online plan switching without stalling active queries.</p>
-          <div class="tech"><span class="tp">C++</span><span class="tp">Apache Flink</span><span class="tp">PostgreSQL internals</span><span class="tp">LLVM JIT</span><span class="tp">Python</span></div>
-          <div class="xlinks">
-            <a class="xl" href="#">📄 Paper (SIGMOD '25)</a>
-            <a class="xl" href="#">💻 GitHub</a>
-            <a class="xl" href="#">🎞 Slides</a>
-            <a class="xl" href="#">🗒 Poster</a>
-          </div>
-        </div></div>
-      </div>
-
-      <div class="xcard" onclick="toggleX(this)">
-        <div class="xhead rh">
-          <div class="org-logo" style="background:rgba(6,182,212,.12);color:#22d3ee;">[Co]</div>
-          <div><div class="ct">Research Intern — Disaggregated Storage for Vector DBs</div><div class="cs">[Company Name] · Summer 2024 · Host: [Manager Name]</div></div>
-          <span class="pill done">Complete</span><span class="chev">▾</span>
-        </div>
-        <div class="xbody"><div class="xcontent">
-          <p class="xdesc">Rethought the storage layer for approximate nearest-neighbor search. Decoupled compute and storage to enable elastic scaling without traditional network I/O latency penalties. Prototype achieved 2.4× lower tail latency at p99 versus co-located architecture.</p>
-          <div class="tech"><span class="tp">Rust</span><span class="tp">FAISS</span><span class="tp">NVMe-oF</span><span class="tp">gRPC</span><span class="tp">Kubernetes</span></div>
-          <div class="xlinks">
-            <a class="xl" href="#">📄 Preprint</a>
-            <a class="xl" href="#">🎞 Presentation</a>
-          </div>
-        </div></div>
-      </div>
-
-      <div class="xcard" onclick="toggleX(this)">
-        <div class="xhead rh">
-          <div class="org-logo" style="background:rgba(16,185,129,.12);color:#34d399;">UCI</div>
-          <div><div class="ct">Graduate Researcher — Learned LSM-Tree Compaction</div><div class="cs">University of California, Irvine · 2023 – 2024 · Prof. [Name]</div></div>
-          <span class="pill done">Complete</span><span class="chev">▾</span>
-        </div>
-        <div class="xbody"><div class="xcontent">
-          <p class="xdesc">Applied lightweight learned models to predict write amplification and dynamically schedule compaction in LSM-based storage engines (RocksDB). Reduced write amplification 40% on realistic YCSB workloads while maintaining read latency parity.</p>
-          <div class="tech"><span class="tp">C++</span><span class="tp">RocksDB</span><span class="tp">PyTorch (tiny models)</span><span class="tp">YCSB</span></div>
-          <div class="xlinks">
-            <a class="xl" href="#">📄 VLDB '24</a>
-            <a class="xl" href="#">💻 GitHub</a>
-            <a class="xl" href="#">▶️ Talk Video</a>
-            <a class="xl" href="#">🗒 Poster</a>
-          </div>
-        </div></div>
-      </div>
-
-      <div class="xcard" onclick="toggleX(this)">
-        <div class="xhead rh">
-          <div class="org-logo" style="background:rgba(251,191,36,.1);color:#fbbf24;">[U]</div>
-          <div><div class="ct">Graduate Researcher — Consensus Under Partial Connectivity</div><div class="cs">[Previous University] · 2022 – 2023 · Prof. [Name]</div></div>
-          <span class="pill done">Complete</span><span class="chev">▾</span>
-        </div>
-        <div class="xbody"><div class="xcontent">
-          <p class="xdesc">Extended Raft for geo-distributed clusters with intermittent network partitions. Maintains linearizability under partial synchrony and reduces leader election latency by 60% in partition scenarios. Formally verified with TLA+ and chaos-tested using Jepsen.</p>
-          <div class="tech"><span class="tp">Go</span><span class="tp">TLA+</span><span class="tp">etcd internals</span><span class="tp">Jepsen</span></div>
-          <div class="xlinks">
-            <a class="xl" href="#">📄 SIGMOD '23</a>
-            <a class="xl" href="#">🎞 Slides</a>
-          </div>
-        </div></div>
-      </div>
-
-    </div>
-  </div>
-  <footer><p>© 2025 Arnav Dhariya</p><div class="fp"><div class="pd"></div>Open to opportunities</div></footer>
-</div>
+</section>
 
 <!-- PUBLICATIONS -->
-<div id="page-publications" class="page">
-  <div class="page-inner">
-    <div class="sec-label">Publications</div>
-    <h2>Selected <em>papers</em></h2>
-    <div class="expand-list">
+<section id="publications">
+<div class="eyebrow">Publications</div>
+<h2>Papers</h2>
+<div class="pub-list">
 
-      <div class="xcard" onclick="toggleX(this)">
-        <div class="xhead ph">
-          <div class="org-logo" style="background:rgba(99,102,241,.15);color:#818cf8;font-size:9px;">SIGMOD</div>
-          <div><div class="ct">Adaptive Query Re-Optimization for Streaming ML Pipelines</div><div class="cs">Arnav Dhariya, Co-Author, Prof. [Advisor] &nbsp;·&nbsp; SIGMOD 2025</div></div>
-          <span class="pill award">Best Paper</span><span class="chev">▾</span>
-        </div>
-        <div class="xbody"><div class="xcontent">
-          <p class="xdesc">We present a query engine that re-optimizes execution plans online as data distributions shift. Our adaptive cardinality estimator enables plan switching without stalling active queries, yielding 3–8× throughput improvements over static plans on streaming ML workloads.</p>
-          <div class="media-row">
-            <div class="mthumb"><div class="mi">▶️</div>Talk Video</div>
-            <div class="mthumb"><div class="mi">🗒</div>Conference Poster</div>
-          </div>
-          <div class="xlinks">
-            <a class="xl" href="#">📄 Full Paper</a>
-            <a class="xl" href="#">🎞 Presentation</a>
-            <a class="xl" href="#">💻 Code</a>
-            <a class="xl" href="#">🗒 Poster</a>
-          </div>
-        </div></div>
-      </div>
-
-      <div class="xcard" onclick="toggleX(this)">
-        <div class="xhead ph">
-          <div class="org-logo" style="background:rgba(16,185,129,.12);color:#34d399;font-size:9px;">VLDB</div>
-          <div><div class="ct">Learned Compaction Scheduling in LSM-Tree Storage Engines</div><div class="cs">Arnav Dhariya, Co-Author, Prof. [Advisor] &nbsp;·&nbsp; VLDB 2024 &nbsp;·&nbsp; Oral</div></div>
-          <span class="pill award">Oral</span><span class="chev">▾</span>
-        </div>
-        <div class="xbody"><div class="xcontent">
-          <p class="xdesc">We apply lightweight learned models to predict write amplification and dynamically schedule compaction in LSM-based engines. Our approach reduces write amplification by 40% on YCSB workloads while maintaining read latency parity versus heuristic schedulers.</p>
-          <div class="media-row">
-            <div class="mthumb"><div class="mi">▶️</div>Talk Video</div>
-            <div class="mthumb"><div class="mi">🗒</div>Poster</div>
-          </div>
-          <div class="xlinks">
-            <a class="xl" href="#">📄 Full Paper</a>
-            <a class="xl" href="#">🎞 Slides</a>
-            <a class="xl" href="#">💻 Code</a>
-          </div>
-        </div></div>
-      </div>
-
-      <div class="xcard" onclick="toggleX(this)">
-        <div class="xhead ph">
-          <div class="org-logo" style="background:rgba(6,182,212,.12);color:#22d3ee;font-size:9px;">ICDE</div>
-          <div><div class="ct">Elastic Vector Search: Disaggregated Storage for ANN Indexes</div><div class="cs">Arnav Dhariya, Co-Author &nbsp;·&nbsp; ICDE 2024</div></div>
-          <span class="pill award">Oral</span><span class="chev">▾</span>
-        </div>
-        <div class="xbody"><div class="xcontent">
-          <p class="xdesc">We separate compute and storage for approximate nearest-neighbor search, enabling elastic horizontal scaling. Our prototype achieves 2.4× lower p99 tail latency vs co-located baselines while reducing resource cost 38% on production-scale embedding workloads.</p>
-          <div class="media-row">
-            <div class="mthumb"><div class="mi">🎞</div>Presentation</div>
-          </div>
-          <div class="xlinks">
-            <a class="xl" href="#">📄 Paper</a>
-            <a class="xl" href="#">🎞 Slides</a>
-          </div>
-        </div></div>
-      </div>
-
-      <div class="xcard" onclick="toggleX(this)">
-        <div class="xhead ph">
-          <div class="org-logo" style="background:rgba(99,102,241,.15);color:#818cf8;font-size:9px;">SIGMOD</div>
-          <div><div class="ct">Raft-Flex: Consensus Under Partial Network Connectivity</div><div class="cs">Arnav Dhariya, Co-Author, Prof. [Advisor] &nbsp;·&nbsp; SIGMOD 2023</div></div>
-          <span class="pill done">Nominee</span><span class="chev">▾</span>
-        </div>
-        <div class="xbody"><div class="xcontent">
-          <p class="xdesc">Raft-Flex extends Raft for geo-distributed clusters with intermittent partitions. We maintain linearizability under partial synchrony and reduce leader election latency 60% in partition-prone scenarios, verified with TLA+ and chaos-tested using Jepsen.</p>
-          <div class="xlinks">
-            <a class="xl" href="#">📄 Paper</a>
-            <a class="xl" href="#">🎞 Slides</a>
-            <a class="xl" href="#">🗒 Poster</a>
-          </div>
-        </div></div>
-      </div>
-
-      <div class="xcard" onclick="toggleX(this)">
-        <div class="xhead ph">
-          <div class="org-logo" style="background:rgba(16,185,129,.12);color:#34d399;font-size:9px;">VLDB</div>
-          <div><div class="ct">Benchmarking Stream Processing Systems at Scale</div><div class="cs">Co-Author, Arnav Dhariya, Co-Author &nbsp;·&nbsp; VLDB Workshop 2022</div></div>
-          <span class="pill pre">Workshop</span><span class="chev">▾</span>
-        </div>
-        <div class="xbody"><div class="xcontent">
-          <p class="xdesc">A comprehensive benchmark comparing Apache Flink, Spark Structured Streaming, and Kafka Streams across latency, throughput, and fault-tolerance. Introduces a new workload taxonomy for streaming analytics systems.</p>
-          <div class="xlinks">
-            <a class="xl" href="#">📄 Paper</a>
-            <a class="xl" href="#">💻 Benchmark Code</a>
-          </div>
-        </div></div>
-      </div>
-
+  <div class="pub">
+    <div class="pub-top">
+      <h3>Inference-Aware &amp; Privacy-Preserving Deletion in Databases</h3>
+      <div class="pub-venue">SIGMOD Workshop · ACM SeQuereDB 2026</div>
+    </div>
+    <div class="pub-authors">Chakraborty, V., Kaminsky, Y., <strong>Dhariya, A.A.</strong>, Mehrotra, S., Naumann, F., Pandey, S.</div>
+    <p class="pub-abstract">
+      Addresses the challenge of satisfying Right-to-Be-Forgotten requests in a way that
+      preserves differential privacy guarantees while preventing inference leakage. Introduces
+      ILP-based deletion mechanisms evaluated across diverse UCI ML datasets, with a reproducible
+      benchmarking framework for leakage analysis. Also published in PVLDB Volume 19.
+    </p>
+    <div class="pub-links">
+      <a href="https://arxiv.org/pdf/2604.00326" target="_blank" rel="noopener">PDF (arXiv)</a>
     </div>
   </div>
-  <footer><p>© 2025 Arnav Dhariya</p><div class="fp"><div class="pd"></div>Open to opportunities</div></footer>
-</div>
 
-<!-- BLOG -->
-<div id="page-blog" class="page">
-  <div class="page-inner">
-    <div class="sec-label">Blog</div>
-    <h2>Writing & <em>notes</em></h2>
-    <div class="blog-grid">
-      <div class="bcard">
-        <div class="bmeta"><span>Jun 2025</span><span>8 min read</span></div>
-        <div class="btitle">Why Your Query Optimizer Doesn't Know What It's Doing</div>
-        <div class="bex">Static cardinality estimates break the moment data drifts. Here's how I think about online re-optimization — and why it's harder than it looks.</div>
-        <div class="btags"><span class="btag">Databases</span><span class="btag">Query Opt</span></div>
-      </div>
-      <div class="bcard">
-        <div class="bmeta"><span>Apr 2025</span><span>12 min read</span></div>
-        <div class="btitle">LSM-Trees Are Beautiful and They're Lying to You</div>
-        <div class="bex">A deep dive into write amplification, compaction policies, and what learned models can actually help with (and what they can't).</div>
-        <div class="btags"><span class="btag">Storage</span><span class="btag">Systems</span></div>
-      </div>
-      <div class="bcard">
-        <div class="bmeta"><span>Feb 2025</span><span>6 min read</span></div>
-        <div class="btitle">Vector Databases Are Just Databases</div>
-        <div class="bex">The hype cycle treats ANN as magic. It isn't. Here's what disaggregating compute and storage actually buys you.</div>
-        <div class="btags"><span class="btag">Vector Search</span><span class="btag">ML Infra</span></div>
-      </div>
-      <div class="bcard">
-        <div class="bmeta"><span>Nov 2024</span><span>10 min read</span></div>
-        <div class="btitle">TLA+ for the Skeptical Systems Researcher</div>
-        <div class="bex">I resisted formal verification for years. Then it found a liveness bug that months of testing missed.</div>
-        <div class="btags"><span class="btag">Distributed</span><span class="btag">Formal Methods</span></div>
-      </div>
-      <div class="bcard">
-        <div class="bmeta"><span>Aug 2024</span><span>5 min read</span></div>
-        <div class="btitle">PhD Year One: What I Wish I Knew</div>
-        <div class="bex">Research taste, advisor relationships, reading papers fast, and why "just code it" is usually wrong advice for a first-year.</div>
-        <div class="btags"><span class="btag">PhD Life</span><span class="btag">Advice</span></div>
-      </div>
-      <div class="bcard" style="border-style:dashed;display:flex;align-items:center;justify-content:center;min-height:180px;">
-        <div style="text-align:center;color:var(--muted);">
-          <div style="font-size:1.5rem;margin-bottom:.5rem;opacity:.4;">✏️</div>
-          <div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;">More posts coming</div>
-        </div>
-      </div>
+  <div class="pub">
+    <div class="pub-top">
+      <h3>A Systematic Literature Review of Climate Econometrics Research</h3>
+      <div class="pub-venue">SSRN · April 2025</div>
+    </div>
+    <div class="pub-authors">Freedman, H., Foletta, M., Fernandez, G., Sokolova, V., <strong>Dhariya, A.A.</strong>, van der Hoek, A., Tomlinson, B.</div>
+    <p class="pub-abstract">
+      A systematic review of 300+ climate econometrics papers, evaluating methodological rigor,
+      reproducibility, and the availability of data and code. Synthesizes trends and gaps in the
+      field to inform future reproducible climate research.
+    </p>
+    <div class="pub-links">
+      <a href="https://ssrn.com/abstract=6178246" target="_blank" rel="noopener">SSRN</a>
     </div>
   </div>
-  <footer><p>© 2025 Arnav Dhariya</p><div class="fp"><div class="pd"></div>Open to opportunities</div></footer>
+
 </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+<div class="eyebrow">Research Experience</div>
+<h2>Current &amp; past research</h2>
+<div class="exp-list">
+
+  <div class="exp">
+    <div class="exp-top">
+      <h3>Sharad's Lab</h3>
+      <div class="exp-period">August 2025 – Present</div>
+    </div>
+    <div class="exp-org">UC Irvine · Undergraduate Researcher · Advised by Prof. Sharad Mehrotra</div>
+    <p>Inference-aware and privacy-preserving deletion in databases.</p>
+    <div class="tags">
+      <span class="tag">Python</span><span class="tag">MySQL</span>
+      <span class="tag">Differential Privacy</span><span class="tag">ILP</span><span class="tag">Gurobi</span>
+    </div>
+  </div>
+
+  <div class="exp">
+    <div class="exp-top">
+      <h3>NetSAIL Lab</h3>
+      <div class="exp-period">August 2025 – Present</div>
+    </div>
+    <div class="exp-org">UC Irvine · Undergraduate Researcher · Advised by Prof. Sangeetha Abdu Jyothi</div>
+    <p>Distributed vector search infrastructure; discrete-event simulation of large-scale sharding strategies (FAISS IVF, BigANN, BatANN) for agentic AI systems.</p>
+    <div class="tags">
+      <span class="tag">FAISS</span><span class="tag">Distributed Systems</span>
+      <span class="tag">Simulation</span><span class="tag">Cloud Infrastructure</span>
+    </div>
+  </div>
+
+  <div class="exp">
+    <div class="exp-top">
+      <h3>CalPlug</h3>
+      <div class="exp-period">Present</div>
+    </div>
+    <div class="exp-org">UC Irvine · Undergraduate Researcher · Advised by Prof. G.P. Li</div>
+    <p>Real-time occupancy-based control of lighting, plug loads, and HVAC in commercial buildings; sensor-driven automation for energy efficiency.</p>
+    <div class="tags">
+      <span class="tag">Building Automation</span><span class="tag">Energy Systems</span><span class="tag">Control Systems</span>
+    </div>
+  </div>
+
+  <div class="exp">
+    <div class="exp-top">
+      <h3>INsite Lab</h3>
+      <div class="exp-period">June 2025 – December 2025</div>
+    </div>
+    <div class="exp-org">UC Irvine · Research Team Lead</div>
+    <p>Student data analysis across academic and health metrics; stakeholder interviews and data-driven policy recommendations for the ICS department.</p>
+    <div class="tags">
+      <span class="tag">Data Analysis</span><span class="tag">Mixed Methods</span><span class="tag">Leadership</span>
+    </div>
+  </div>
+
+  <div class="exp">
+    <div class="exp-top">
+      <h3>Dr. Wayne Hayes Research Group</h3>
+      <div class="exp-period">September 2024 – September 2025</div>
+    </div>
+    <div class="exp-org">UC Irvine · Undergraduate Researcher · Advised by Prof. Wayne Hayes</div>
+    <p>Built SAHap, a C++ haplotype assembler minimizing weighted mismatch (wMEC) across parental haplotypes via simulated annealing, extended with MaSuRCA-style super-reads and two-stage re-annealing for lower error on datasets up to 20,000 reads.</p>
+    <div class="tags">
+      <span class="tag">C++</span><span class="tag">Simulated Annealing</span>
+      <span class="tag">Bioinformatics</span><span class="tag">wMEC Optimization</span>
+    </div>
+  </div>
+
+  <div class="exp">
+    <div class="exp-top">
+      <h3>Computer Vision Lab</h3>
+      <div class="exp-period">August 2025 – January 2026</div>
+    </div>
+    <div class="exp-org">UC Irvine · Undergraduate Researcher · Advised by Prof. Glenn Healy</div>
+    <p>Quantitative analysis of hyperspectral and multispectral sensor data for environmental resilience applications (Calit2 IRT award).</p>
+    <div class="tags">
+      <span class="tag">Hyperspectral Imaging</span><span class="tag">Computer Vision</span>
+      <span class="tag">Sci-kit Learn</span>
+    </div>
+  </div>
+
+  <div class="exp">
+    <div class="exp-top">
+      <h3>Green IT Lab</h3>
+      <div class="exp-period">January 2025 – March 2025</div>
+    </div>
+    <div class="exp-org">UC Irvine · Literature Reviewer</div>
+    <p>Systematic literature review of 300+ climate econometrics papers, evaluating methodological rigor and reproducibility; published on SSRN.</p>
+    <div class="tags">
+      <span class="tag">Systematic Review</span><span class="tag">Climate Econometrics</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- MEDIA -->
+<section id="media">
+<div class="eyebrow">Media</div>
+<h2>Posters &amp; talks</h2>
+
+<div class="pres-list">
+
+  <div class="pres">
+    <div class="pres-top">
+      <span class="pres-title">Real Time Occupancy Based Control for Lighting, PPL, and HVAC in Commercial Buildings</span>
+      <span class="pres-venue">UCI Undergraduate Research Symposium, 2026</span>
+    </div>
+    <div class="pres-authors">Dhariya, A.A., Kaushal, A., Pandit, R.S., Wang, S., Li, G.P. · CalPlug / Calit2, UC Irvine</div>
+  </div>
+
+  <div class="pres">
+    <div class="pres-top">
+      <span class="pres-title">Meaningful Data Deletion in Data Processing Pipelines</span>
+      <span class="pres-venue">UCI Undergraduate Research Symposium, 2025</span>
+    </div>
+    <div class="pres-authors">Dhariya, A.A., Chakraborty, V., Mehrotra, S. · Department of Computer Science, UC Irvine</div>
+  </div>
+
+</div>
+
+<div class="media-full">
+  <h3 style="font-family:var(--serif);font-size:1.08rem;margin-bottom:.6rem;">SAHap: Simulated Annealing Haplotype Assembler</h3>
+  <div class="media-embed video-embed">
+    <iframe
+      src="https://www.youtube.com/embed/BR4FiOCcmdU"
+      title="SAHap: Simulated Annealing Haplotype Assembler, UCI UROP Symposium"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
+  <div class="media-caption" style="margin-top:.5rem;">
+    UCI Undergraduate Research Symposium presentation · Hayes Lab · Chancellor's Award for Excellence in Undergraduate Research
+  </div>
+</div>
+
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+<div class="eyebrow">Recognition</div>
+<h2>Awards</h2>
+<div class="award-list">
+  <div class="award">
+    <span class="award-label">2025, 2026</span>
+    UCI Undergraduate Research Symposium Finalist
+  </div>
+  <div class="award">
+    <span class="award-label">2025</span>
+    Chancellor's Award for Excellence in Undergraduate Research
+  </div>
+  <div class="award">
+    <span class="award-label">2025–2027</span>
+    UCI UROP Fellow, 2025–2026 and 2026–2027
+  </div>
+  <div class="award">
+    <span class="award-label">2025</span>
+    Summer Undergraduate Research Program Fellowship ($1,500 Award)
+  </div>
+  <div class="award">
+    <span class="award-label">2025</span>
+    Calit2 IRT Award, Computer Vision Lab ($2,000)
+  </div>
+  <div class="award">
+    <span class="award-label">2024–2027</span>
+    Dean's Honor List, 6 Quarters (GPA 3.92)
+  </div>
+</div>
+</section>
+
+<!-- WRITING -->
+<section id="writing">
+<div class="eyebrow">Writing</div>
+<div class="medium-header">
+  <h2 style="margin-bottom:0;">Notes &amp; posts</h2>
+  <a class="medium-all" href="https://medium.com/@arnavdhariya24" target="_blank" rel="noopener">All posts on Medium ↗</a>
+</div>
+<div class="card-grid" id="medium-posts">
+  <div class="medium-loading">Loading posts…</div>
+</div>
+</section>
 
 <!-- CONTACT -->
-<div id="page-contact" class="page">
-  <div class="page-inner">
-    <div class="sec-label">Contact</div>
-    <h2>Let's <em>connect</em></h2>
-    <div class="contact-grid">
-      <div class="ci-body">
-        <div class="ci-title">// get in touch</div>
-        <p>Open to research collaborations, PhD application chats, internship discussions, and any systems/databases conversation worth having.</p>
-        <p>Response time: usually within 48 hours.</p>
-        <div class="socials">
-          <a class="slink" href="mailto:arnavdhariya24@gmail.com">📧 arnavdhariya24@gmail.com</a>
-          <a class="slink" href="https://scholar.google.com" target="_blank" rel="noopener">🎓 Google Scholar</a>
-          <a class="slink" href="https://github.com" target="_blank" rel="noopener">💻 GitHub</a>
-          <a class="slink" href="https://linkedin.com" target="_blank" rel="noopener">💼 LinkedIn</a>
-          <a class="slink" href="https://twitter.com" target="_blank" rel="noopener">🐦 Twitter / X</a>
-        </div>
-      </div>
-      <div>
-        <form class="cform" id="cform">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_subject" value="Portfolio Contact — Arnav Dhariya">
-          <div class="frow">
-            <div class="fg"><label class="fl">Name</label><input class="fi" type="text" name="name" placeholder="Your name" required></div>
-            <div class="fg"><label class="fl">Email</label><input class="fi" type="email" name="email" placeholder="you@email.com" required></div>
-          </div>
-          <div class="fg"><label class="fl">Subject</label><input class="fi" type="text" name="subject" placeholder="Research collab, PhD chat…"></div>
-          <div class="fg"><label class="fl">Message</label><textarea class="fta" name="message" placeholder="What's on your mind?" required></textarea></div>
-          <button class="fsub" type="submit">Send Message →</button>
-          <div class="fmsg" id="fmsg">✓ Sent! I'll be in touch soon.</div>
-        </form>
-      </div>
+<section id="contact">
+<div class="eyebrow">Contact</div>
+<h2>Get in touch</h2>
+<div class="contact-grid">
+  <div>
+    <p>
+      I'd love to hear from faculty considering PhD applicants, current grad students who can
+      speak to a lab's day-to-day, or anyone interested in collaborating on the research above.
+      I generally reply within a couple of days.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:dhariyaa@uci.edu">dhariyaa [at] uci [dot] edu</a>
+      <a href="https://scholar.google.com/citations?user=jzSG8DgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/arnavdhariya" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/arnav-dhariya-3a2441241/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://medium.com/@arnavdhariya24" target="_blank" rel="noopener">Medium</a>
     </div>
   </div>
-  <footer><p>© 2025 Arnav Dhariya</p><div class="fp"><div class="pd"></div>Open to opportunities</div></footer>
+  <form class="cform" id="cform">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Website contact: Arnav Dhariya">
+    <div class="frow">
+      <div class="fg"><label class="fl" for="f-name">Name</label><input class="fi" id="f-name" type="text" name="name" placeholder="Your name" required></div>
+      <div class="fg"><label class="fl" for="f-email">Email</label><input class="fi" id="f-email" type="email" name="email" placeholder="you@email.com" required></div>
+    </div>
+    <div class="fg"><label class="fl" for="f-subject">Subject</label><input class="fi" id="f-subject" type="text" name="subject" placeholder="What's this about?"></div>
+    <div class="fg"><label class="fl" for="f-message">Message</label><textarea class="fta" id="f-message" name="message" placeholder="Write your message here." required></textarea></div>
+    <button class="fsub" type="submit">Send message</button>
+    <div class="fmsg" id="fmsg">Sent. Thanks, I'll reply soon.</div>
+  </form>
 </div>
+</section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Arnav Dhariya · UC Irvine</p>
+  <p><a href="mailto:dhariyaa@uci.edu" style="font-family:var(--mono);font-size:11px;color:var(--muted);">dhariyaa [at] uci [dot] edu</a></p>
+</footer>
 
 <script>
-// ── CURSOR ──
-const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let cx=0,cy=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;});
-document.addEventListener('mouseover',e=>{if(e.target.closest('a,button,.xcard,.bcard,.fsub,.slink,.xl,.btn-p,.btn-o'))document.body.classList.add('hovering');});
-document.addEventListener('mouseout', e=>{if(!e.target.closest('a,button,.xcard,.bcard,.fsub,.slink,.xl,.btn-p,.btn-o'))document.body.classList.remove('hovering');});
-(function mc(){rx+=(cx-rx)*.13;ry+=(cy-ry)*.13;cur.style.left=cx+'px';cur.style.top=cy+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(mc);})();
-
-// ── ROUTER ──
-function go(pid){
-  const cur=document.querySelector('.page.active');
-  const nxt=document.getElementById('page-'+pid);
-  if(!nxt||cur===nxt)return;
-  cur.style.cssText='opacity:0;transition:opacity .22s;';
-  setTimeout(()=>{
-    cur.classList.remove('active');cur.style.cssText='';
-    nxt.classList.add('active');nxt.style.cssText='opacity:0;transition:opacity .22s;';
-    window.scrollTo(0,0);
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{
-      nxt.style.opacity='1';
-      setTimeout(()=>nxt.style.cssText='',230);
-    }));
-  },220);
-  document.querySelectorAll('.nav-link').forEach(l=>l.classList.toggle('active',l.dataset.page===pid));
-  history.pushState(null,'','#'+pid);
+// Active nav on scroll
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('nav.links a');
+function onScroll(){
+  let current = sections[0]?.id;
+  const offset = 90;
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top - offset <= 0) current = sec.id;
+  });
+  navLinks.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+current));
 }
-window.addEventListener('popstate',()=>{const h=location.hash.replace('#','');if(h&&document.getElementById('page-'+h))go(h);});
-if(location.hash){const p=location.hash.replace('#','');if(document.getElementById('page-'+p))go(p);}
+document.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
 
-// ── EXPAND CARDS ──
-function toggleX(card){
-  const was=card.classList.contains('open');
-  card.closest('.expand-list').querySelectorAll('.xcard.open').forEach(c=>c.classList.remove('open'));
-  if(!was)card.classList.add('open');
-}
-
-// ── TYPEWRITER ──
-const topics=['streaming databases','distributed query engines','real-time ML infrastructure','vector search systems','adaptive storage engines'];
-let ti=0,ci=0,del=false;
-const twt=document.getElementById('twt');
-function tw(){
-  const w=topics[ti];
-  if(!del){twt.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(tw,1900);return;}}
-  else{twt.textContent=w.slice(0,--ci);if(ci===0){del=false;ti=(ti+1)%topics.length;}}
-  setTimeout(tw,del?38:72);
-}
-tw();
-
-// ── CONTACT FORM ──
-document.getElementById('cform').addEventListener('submit',async function(e){
+// Contact form - sends to arnavdhariya24@gmail.com via formsubmit
+document.getElementById('cform').addEventListener('submit', async function(e){
   e.preventDefault();
-  const btn=this.querySelector('.fsub'),msg=document.getElementById('fmsg');
-  btn.textContent='Sending…';btn.disabled=true;
+  const btn = this.querySelector('.fsub'), msg = document.getElementById('fmsg');
+  const original = btn.textContent;
+  btn.textContent = 'Sending…'; btn.disabled = true;
   try{
-    const r=await fetch('https://formsubmit.co/ajax/arnavdhariya24@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(this)});
-    if(r.ok){msg.style.display='block';this.reset();btn.textContent='Sent ✓';}
-    else{btn.textContent='Error — email me directly';btn.disabled=false;}
-  }catch{btn.textContent='Error — email me directly';btn.disabled=false;}
-});
-
-// ── BACKGROUND CANVAS WITH LANE BLOCKING ──
-(function(){
-  const cv=document.getElementById('bg-canvas');
-  const ctx=cv.getContext('2d');
-  const PI2=Math.PI*2,STREAMS=9;
-  let W,H,particles=[],clicking=false,mx=-999,my=-999;
-
-  function init(){
-    W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;
-    particles=[];
-    for(let s=0;s<STREAMS;s++){
-      const n=20+Math.floor(Math.random()*12);
-      for(let i=0;i<n;i++){
-        particles.push({
-          x:Math.random()*W,
-          y:(s+.5)/STREAMS*H,
-          vx:.7+Math.random()*.9,vy:0,
-          homeLane:s,targetLane:s,
-          deflectDir:i%2===0?1:-1,
-          speed:.7+Math.random()*.7,
-          size:1.4+Math.random()*2,
-          phase:Math.random()*PI2,
-          hue:s%3===0?[16,185,129]:s%3===1?[6,182,212]:[52,211,153],
-        });
-      }
-    }
-  }
-  window.addEventListener('resize',init);
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-  document.addEventListener('mousedown',e=>{mx=e.clientX;my=e.clientY;clicking=true;});
-  document.addEventListener('mouseup',()=>clicking=false);
-  document.addEventListener('touchstart',e=>{mx=e.touches[0].clientX;my=e.touches[0].clientY;clicking=true;},{passive:true});
-  document.addEventListener('touchmove',e=>{mx=e.touches[0].clientX;my=e.touches[0].clientY;},{passive:true});
-  document.addEventListener('touchend',()=>clicking=false);
-
-  const trail=[];let t=0;
-
-  function draw(){
-    ctx.fillStyle='rgba(3,12,8,0.2)';ctx.fillRect(0,0,W,H);
-
-    // Lane guides
-    for(let s=0;s<STREAMS;s++){
-      const y=(s+.5)/STREAMS*H;
-      ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);
-      ctx.strokeStyle='rgba(16,185,129,0.033)';ctx.lineWidth=1;ctx.stroke();
-    }
-
-    // Compute active block
-    let blockLane=-1;
-    if(clicking&&mx>0){
-      blockLane=Math.min(STREAMS-1,Math.max(0,Math.floor(my/H*STREAMS)));
-      const laneY=(blockLane+.5)/STREAMS*H;
-      const lH=H/STREAMS*.65;
-
-      // Glow
-      const bg=ctx.createRadialGradient(mx,laneY,0,mx,laneY,44);
-      bg.addColorStop(0,'rgba(239,68,68,0.32)');bg.addColorStop(1,'rgba(239,68,68,0)');
-      ctx.fillStyle=bg;ctx.beginPath();ctx.arc(mx,laneY,44,0,PI2);ctx.fill();
-
-      // Barrier line
-      ctx.beginPath();ctx.moveTo(mx,laneY-lH);ctx.lineTo(mx,laneY+lH);
-      ctx.strokeStyle='rgba(239,68,68,0.82)';ctx.lineWidth=2.5;ctx.stroke();
-
-      // Tick marks
-      for(let y=laneY-lH+4;y<laneY+lH;y+=9){
-        ctx.beginPath();ctx.moveTo(mx-5,y);ctx.lineTo(mx+5,y);
-        ctx.strokeStyle='rgba(239,68,68,0.5)';ctx.lineWidth=1.5;ctx.stroke();
-      }
-
-      // Reroute arrows on neighbor lanes
-      [-1,1].forEach(d=>{
-        const adj=blockLane+d;
-        if(adj<0||adj>=STREAMS)return;
-        const ay=(adj+.5)/STREAMS*H;
-        // draw a small arrow
-        ctx.fillStyle='rgba(52,211,153,0.55)';
-        ctx.font='bold 13px monospace';
-        ctx.fillText('→',mx+10,ay+5);
-      });
-    }
-
-    // Click ripples (not when blocking)
-    if(clicking&&blockLane<0)trail.push({x:mx,y:my,r:10,a:.2});
-    for(let i=trail.length-1;i>=0;i--){
-      const tr=trail[i];tr.r+=4;tr.a-=.009;
-      if(tr.a<=0){trail.splice(i,1);continue;}
-      ctx.beginPath();ctx.arc(tr.x,tr.y,tr.r,0,PI2);
-      ctx.strokeStyle=`rgba(52,211,153,${tr.a})`;ctx.lineWidth=1;ctx.stroke();
-    }
-
-    // Cursor glow
-    if(mx>0){
-      const g=ctx.createRadialGradient(mx,my,0,mx,my,clicking?95:65);
-      g.addColorStop(0,`rgba(52,211,153,${clicking?.09:.04})`);g.addColorStop(1,'rgba(52,211,153,0)');
-      ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-    }
-
-    // Particles
-    particles.forEach(p=>{
-      // Block logic
-      if(blockLane>=0&&p.homeLane===blockLane){
-        const dist=mx-p.x;
-        if(dist>-30&&dist<110&&p.vx>0){
-          // Deflect to adjacent lane, clamped
-          const adj=Math.min(STREAMS-1,Math.max(0,p.homeLane+p.deflectDir));
-          p.targetLane=adj;
-        }
-      } else if(p.targetLane!==p.homeLane){
-        // Restore: if block gone or particle passed the block
-        if(blockLane<0||p.homeLane!==blockLane||p.x>mx+80){
-          p.targetLane=p.homeLane;
-        }
-      }
-
-      // Cursor repel (only when not holding/blocking)
-      if(!clicking){
-        const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy);
-        if(d<90&&d>0){const f=(90-d)/90;p.vx+=(dx/d)*f*1.0;p.vy+=(dy/d)*f*.65;}
-      }
-
-      // Steer toward target lane
-      const ty=(p.targetLane+.5)/STREAMS*H;
-      p.vy+=(ty-p.y)*.028;
-      p.vx+=(p.speed-p.vx)*.04;
-      p.vy*=.88;p.vx*=.97;
-      p.x+=p.vx;p.y+=p.vy;
-
-      if(p.x>W+20)p.x=-20;
-      if(p.x<-20)p.x=W+20;
-
-      const[r,g,b]=p.hue;
-      const alpha=.38+.34*Math.sin(t*.04+p.phase);
-
-      // Tail
-      ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x-p.vx*5,p.y-p.vy*2.5);
-      ctx.strokeStyle=`rgba(${r},${g},${b},${alpha*.35})`;ctx.lineWidth=p.size*.7;ctx.stroke();
-      // Dot
-      ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,PI2);
-      ctx.fillStyle=`rgba(${r},${g},${b},${alpha})`;ctx.fill();
+    const r = await fetch('https://formsubmit.co/ajax/arnavdhariya24@gmail.com', {
+      method:'POST', headers:{'Accept':'application/json'}, body:new FormData(this)
     });
-
-    t++;requestAnimationFrame(draw);
+    if(r.ok){ msg.style.display='block'; this.reset(); btn.textContent = original; btn.disabled=false; }
+    else { btn.textContent = 'Error: please email me directly'; btn.disabled=false; }
+  } catch {
+    btn.textContent = 'Error: please email me directly'; btn.disabled=false;
   }
-  init();draw();
+});
+// Medium RSS feed — card grid with multi-proxy fallback
+(async function loadMediumPosts() {
+  const container = document.getElementById('medium-posts');
+  const MEDIUM_USER = 'arnavdhariya24';
+  const MEDIUM_RSS = `https://medium.com/feed/@${MEDIUM_USER}`;
+
+  function parseXML(text) {
+    const xml = new DOMParser().parseFromString(text, 'text/xml');
+    return [...xml.querySelectorAll('item')].map(item => {
+      const title = item.querySelector('title')?.textContent || '';
+      const link = item.querySelector('link')?.nextSibling?.textContent?.trim()
+                || item.querySelector('link')?.textContent || '#';
+      const pubDate = item.querySelector('pubDate')?.textContent || '';
+      const dateStr = pubDate ? new Date(pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+      const contentRaw = item.getElementsByTagName('content:encoded')[0]?.textContent || '';
+      const tmp = document.createElement('div');
+      tmp.innerHTML = contentRaw;
+      const thumb = tmp.querySelector('img')?.getAttribute('src') || '';
+      const words = (tmp.textContent || '').trim().split(/\s+/).filter(Boolean);
+      return { title, link, date: dateStr, thumb, mins: Math.max(1, Math.round(words.length / 200)), excerpt: words.slice(0, 28).join(' ') };
+    });
+  }
+
+  function buildCards(items) {
+    container.innerHTML = '';
+    items.slice(0, 6).forEach(item => {
+      const thumbHTML = item.thumb
+        ? `<img class="card-thumb" src="${item.thumb}" alt="" loading="lazy" onerror="this.style.display='none'">`
+        : `<div class="card-thumb-placeholder"><span>Medium</span></div>`;
+      const card = document.createElement('a');
+      card.className = 'card';
+      card.href = item.link;
+      card.target = '_blank';
+      card.rel = 'noopener';
+      card.innerHTML = `
+        ${thumbHTML}
+        <div class="card-body">
+          <div class="card-title">${item.title}</div>
+          ${item.excerpt ? `<div class="card-excerpt">${item.excerpt}…</div>` : ''}
+          <div class="card-meta">${item.date}${item.date && item.mins ? ' · ' : ''}${item.mins ? item.mins + ' min read' : ''}</div>
+        </div>`;
+      container.appendChild(card);
+    });
+  }
+
+  const proxies = [
+    async () => {
+      const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(MEDIUM_RSS)}`);
+      const d = await r.json();
+      return parseXML(d.contents);
+    },
+    async () => {
+      const r = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_RSS)}&count=6`);
+      const d = await r.json();
+      if (d.status !== 'ok') throw new Error();
+      return d.items.map(item => {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = item.content || item.description || '';
+        const words = (tmp.textContent || '').trim().split(/\s+/).filter(Boolean);
+        const thumb = item.thumbnail || (item.content || '').match(/<img[^>]+src="([^"]+)"/)?.[1] || '';
+        return { title: item.title, link: item.link, date: new Date(item.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }), thumb, mins: Math.max(1, Math.round(words.length / 200)), excerpt: words.slice(0, 28).join(' ') };
+      });
+    },
+    async () => {
+      const r = await fetch(`https://corsproxy.io/?${encodeURIComponent(MEDIUM_RSS)}`);
+      return parseXML(await r.text());
+    },
+  ];
+
+  for (const proxy of proxies) {
+    try {
+      const items = await proxy();
+      if (items?.length) { buildCards(items); return; }
+    } catch { /* try next */ }
+  }
+
+  container.innerHTML = `<a class="card" href="https://medium.com/@${MEDIUM_USER}" target="_blank" rel="noopener"><div class="card-thumb-placeholder"><span>Medium</span></div><div class="card-body"><div class="card-title">Read my writing on Medium</div><div class="card-excerpt">Posts on database systems, privacy-preserving ML, distributed infrastructure, and research process.</div><div class="card-meta">medium.com/@${MEDIUM_USER}</div></div></a>`;
 })();
 </script>
 </body>
