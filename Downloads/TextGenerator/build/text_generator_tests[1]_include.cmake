@@ -1,0 +1,5 @@
+if(EXISTS "/Users/adhariya/Downloads/TextGenerator/build/text_generator_tests[1]_tests.cmake")
+  include("/Users/adhariya/Downloads/TextGenerator/build/text_generator_tests[1]_tests.cmake")
+else()
+  add_test(text_generator_tests_NOT_BUILT text_generator_tests_NOT_BUILT)
+endif()

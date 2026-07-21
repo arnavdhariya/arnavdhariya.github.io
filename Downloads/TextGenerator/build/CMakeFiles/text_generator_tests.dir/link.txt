@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/text_generator_tests.dir/gtest/TextGenerator_tests.cpp.o CMakeFiles/text_generator_tests.dir/src/FreqList.cpp.o CMakeFiles/text_generator_tests.dir/src/WordStream.cpp.o -o bin/text_generator_tests  lib/libgtest_main.a lib/libgtest.a
