@@ -10,5 +10,4 @@ draft: true
 tags: []
 links: []
 ---
-- Studying users' perspectives on AI agents, and took the graduate course CS 204 (Usable Security and Privacy) as an undergraduate.
-- Automating the analysis of Reddit threads with AI pipelines, potentially built on Quail.
+- Studying users' perspectives on AI agents by analyzing Reddit posts, and building AI pipelines to automate that analysis.

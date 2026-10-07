@@ -9,6 +9,7 @@ const positions = defineCollection({
     org: z.string(),
     role: z.string(),
     advisor: z.string().optional(),
+    advisorUrl: z.string().url().optional(),
     start: z.string().optional(),
     end: z.string().default('Present'),
     order: z.number(),
