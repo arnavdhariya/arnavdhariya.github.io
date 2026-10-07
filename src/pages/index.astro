@@ -1,0 +1,191 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import profile from '../assets/profile_pic.png';
+import { site, publications, presentations, awards } from '../data/site';
+import { getMediumPosts } from '../lib/medium';
+
+const positions = (await getCollection('positions')).sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(positions.map(async (p) => ({ p, Content: (await render(p)).Content })));
+const posts = await getMediumPosts(site.mediumUser);
+const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} – ${d.end}` : d.end);
+---
+<Base>
+  <section class="hero" id="top" aria-labelledby="h-name">
+    <p class="eyebrow">Database Systems · Distributed Infrastructure · Agentic AI</p>
+    <h1 id="h-name">Arnav Dhariya</h1>
+    <p class="lede">
+      I'm an undergraduate researcher at the <strong>University of California, Irvine</strong>,
+      graduating June 2027 with a B.S. in Computer Science.
+      My work spans data privacy and deletion, distributed systems for vector search and ML workloads,
+      and agentic AI infrastructure. I work across research groups advised by
+      <strong>Prof. Sharad Mehrotra</strong>, <strong>Prof. Sangeetha Abdu Jyothi</strong>, <strong>Prof. G.P. Li</strong>,
+      <strong>Prof. Wayne Hayes</strong>, and <strong>Prof. Glenn Healy</strong>.
+    </p>
+    <ul class="hero-meta">
+      <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+      <li><a href={site.links.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
+      <li><a href={site.links.github} target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href={site.links.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href={site.links.medium} target="_blank" rel="noopener">Medium</a></li>
+      <li><a href="/resume.pdf">CV (PDF)</a></li>
+    </ul>
+  </section>
+
+  <section id="about" aria-labelledby="h-about">
+    <p class="eyebrow">About</p>
+    <h2 id="h-about" class="sr-only">About</h2>
+    <div class="about-grid">
+      <Image src={profile} alt="Portrait of Arnav Dhariya" class="portrait" width={280} height={360} loading="eager" />
+      <div>
+        <p>I'm an undergraduate at the <strong>University of California, Irvine</strong>, graduating in <strong>June 2027</strong> with a B.S. in Computer Science. Dean's Honor List, 6 quarters.</p>
+        <p>My research sits at the intersection of database systems, distributed infrastructure, and agentic AI. I currently work on privacy-preserving deletion and inference-aware data management in <strong>Sharad's Lab</strong>, distributed vector search infrastructure for large-scale agentic workloads in the <strong>NetSAIL Lab</strong>, energy systems and building automation in <strong>CalPlug</strong>, and previously hyperspectral imaging and haplotype assembly with <strong>Prof. Hayes</strong> and <strong>Prof. Healy</strong>.</p>
+        <p>I'm always happy to talk about query optimization, storage engines, data deletion, agentic systems, or PhD programs. See <a href="#contact">contact</a> below.</p>
+        <ul class="tags" aria-label="Research areas">
+          {['Data Privacy & Deletion','Distributed Systems','Vector Search','Agentic AI Infrastructure','ML Systems','Storage Engines','Query Optimization'].map((t) => <li class="tag">{t}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications" aria-labelledby="h-pubs">
+    <p class="eyebrow">Publications</p>
+    <h2 id="h-pubs">Papers</h2>
+    <div class="pub-list">
+      {publications.map((pub) => (
+        <article class="pub">
+          <div class="pub-top">
+            <h3>{pub.title}</h3>
+            <p class="pub-venue">{pub.venue}</p>
+          </div>
+          <p class="pub-authors">{pub.authors.map((a, i) => (<>{i > 0 && ', '}{a.startsWith('Dhariya') ? <strong>{a}</strong> : a}</>))}</p>
+          <p class="pub-abstract">{pub.abstract}</p>
+          <ul class="pub-links" style="list-style:none">
+            {pub.links.map((l) => <li><a href={l.href} target="_blank" rel="noopener">{l.label}</a></li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="research" aria-labelledby="h-research">
+    <p class="eyebrow">Research Experience</p>
+    <h2 id="h-research">Current &amp; past research</h2>
+    <div class="exp-list">
+      {rendered.map(({ p, Content }) => (
+        <article class="exp" data-draft={p.data.draft}>
+          <div class="exp-top">
+            <h3>{p.data.lab}</h3>
+            <p class="exp-period">{period(p.data)}</p>
+          </div>
+          <p class="exp-meta">{p.data.org} · {p.data.role}{p.data.advisor && ` · Advised by ${p.data.advisor}`}</p>
+          <div class="prose"><Content /></div>
+          <ul class="tags" aria-label="Skills and topics">
+            {p.data.tags.map((t) => <li class="tag">{t}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="media" aria-labelledby="h-media">
+    <p class="eyebrow">Media</p>
+    <h2 id="h-media">Posters &amp; talks</h2>
+    <div class="pres-list">
+      {presentations.map((x) => (
+        <div class="pres">
+          <div class="pres-top"><h3 class="pres-title">{x.title}</h3><p class="pres-venue">{x.venue}</p></div>
+          <p class="pres-authors">{x.authors}</p>
+        </div>
+      ))}
+    </div>
+    <div class="media-full">
+      <h3>SAHap: Simulated Annealing Haplotype Assembler</h3>
+      <div class="media-embed video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/BR4FiOCcmdU" title="SAHap: Simulated Annealing Haplotype Assembler, UCI UROP Symposium" allow="picture-in-picture; encrypted-media" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="media-caption">UCI Undergraduate Research Symposium presentation · Hayes Lab · Chancellor's Award for Excellence in Undergraduate Research. No transcript yet — see the research summary above.</p>
+    </div>
+  </section>
+
+  <section id="awards" aria-labelledby="h-awards">
+    <p class="eyebrow">Recognition</p>
+    <h2 id="h-awards">Awards</h2>
+    <ul class="award-list" style="list-style:none">
+      {awards.map(([when, what]) => <li class="award"><span class="award-label">{when}</span>{what}</li>)}
+    </ul>
+  </section>
+
+  <section id="writing" aria-labelledby="h-writing">
+    <p class="eyebrow">Writing</p>
+    <div class="medium-header">
+      <h2 id="h-writing" style="margin-bottom:0">Notes &amp; posts</h2>
+      <a class="medium-all" href={site.links.medium} target="_blank" rel="noopener">All posts on Medium</a>
+    </div>
+    <div class="card-grid">
+      {posts.length ? posts.map((post) => (
+        <a class="card" href={post.link} target="_blank" rel="noopener">
+          <div class="card-body">
+            <h3 class="card-title">{post.title}</h3>
+            {post.excerpt && <p class="card-excerpt">{post.excerpt}…</p>}
+            <p class="card-meta">{post.date}</p>
+          </div>
+        </a>
+      )) : (
+        <a class="card" href={site.links.medium} target="_blank" rel="noopener">
+          <div class="card-body">
+            <h3 class="card-title">Read my writing on Medium</h3>
+            <p class="card-excerpt">Posts on database systems, privacy-preserving ML, distributed infrastructure, and research process.</p>
+          </div>
+        </a>
+      )}
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="h-contact">
+    <p class="eyebrow">Contact</p>
+    <h2 id="h-contact">Get in touch</h2>
+    <div class="contact-grid">
+      <div>
+        <p>I'd love to hear from faculty considering PhD applicants, current grad students who can speak to a lab's day-to-day, or anyone interested in collaborating on the research above. I generally reply within a couple of days.</p>
+        <div class="contact-links">
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={site.links.scholar} target="_blank" rel="noopener">Google Scholar</a>
+          <a href={site.links.github} target="_blank" rel="noopener">GitHub</a>
+          <a href={site.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <form class="cform" id="cform" aria-label="Contact form">
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_subject" value="Website contact: Arnav Dhariya" />
+        <div class="frow">
+          <div class="fg"><label class="fl" for="f-name">Name</label><input class="fi" id="f-name" type="text" name="name" autocomplete="name" required /></div>
+          <div class="fg"><label class="fl" for="f-email">Email</label><input class="fi" id="f-email" type="email" name="email" autocomplete="email" required /></div>
+        </div>
+        <div class="fg"><label class="fl" for="f-subject">Subject</label><input class="fi" id="f-subject" type="text" name="subject" /></div>
+        <div class="fg"><label class="fl" for="f-message">Message</label><textarea class="fta" id="f-message" name="message" required></textarea></div>
+        <button class="fsub" type="submit">Send message</button>
+        <p class="fmsg" id="fmsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <script define:vars={{ formEmail: site.formEmail, email: site.email }}>
+    const form = document.getElementById('cform');
+    const msg = document.getElementById('fmsg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.fsub');
+      btn.disabled = true; msg.textContent = 'Sending…';
+      try {
+        const r = await fetch(`https://formsubmit.co/ajax/${formEmail}`, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+        if (!r.ok) throw new Error();
+        msg.textContent = "Sent. Thanks, I'll reply soon."; form.reset();
+      } catch {
+        msg.textContent = `Couldn't send. Please email ${email} directly.`;
+      }
+      btn.disabled = false;
+    });
+  </script>
+</Base>
