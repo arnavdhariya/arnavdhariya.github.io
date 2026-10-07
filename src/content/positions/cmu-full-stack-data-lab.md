@@ -17,4 +17,4 @@ links:
     href: https://github.com/fsdatalab/quail
 ---
 - Studying the AI SQL stack end to end: the LLM-powered query-processing literature (Kalypso, DocETL, LOTUS) and the serving systems beneath it (vLLM, SGLang).
-- Contributing research issues to Quail, the lab's open-source AI SQL engine, to move the project forward.
+- Contributing to Quail, the lab's open-source AI SQL engine: writing code, building queries, and adding hybrid models.
