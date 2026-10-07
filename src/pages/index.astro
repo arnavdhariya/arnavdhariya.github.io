@@ -79,11 +79,14 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} �
             <h3>{p.data.lab}</h3>
             <p class="exp-period">{period(p.data)}</p>
           </div>
-          <p class="exp-meta">{p.data.org} · {p.data.role}{p.data.advisor && ` · Advised by ${p.data.advisor}`}</p>
+          <p class="exp-meta">{p.data.org} · {p.data.role}{p.data.advisor && ` · ${p.data.advisor}`}</p>
           <div class="prose"><Content /></div>
-          <ul class="tags" aria-label="Skills and topics">
-            {p.data.tags.map((t) => <li class="tag">{t}</li>)}
-          </ul>
+          {p.data.links.length > 0 && (
+            <ul class="exp-links">
+              {p.data.links.map((l) => <li><a href={l.href} target="_blank" rel="noopener">{l.label}</a></li>)}
+            </ul>
+          )}
+          {p.data.draft && <p class="draft-note">Draft — awaiting bullets</p>}
         </article>
       ))}
     </div>
