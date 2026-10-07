@@ -1,7 +1,8 @@
 ---
 lab: Full Stack Data Lab
 org: Carnegie Mellon University
-role: PLACEHOLDER role
+role: Visiting Researcher
+logo: /logos/fsdatalab.png
 start: July 2026
 end: Present
 order: 1
@@ -12,6 +13,8 @@ links:
     href: https://fsdatalab.github.io/
   - label: Selected work · AI filter cost estimates
     href: https://fsdatalab.github.io/blog/ai-filter-cost-estimates/
+  - label: Quail (open source)
+    href: https://github.com/fsdatalab/quail
 ---
-- Studying the AI SQL stack end to end: the LLM-powered query-processing literature (Kalypso, DocETL, LOTUS) and the serving systems and commercial systems beneath it (vLLM, SGLang, Snowflake Cortex AISQL).
+- Studying the AI SQL stack end to end: the LLM-powered query-processing literature (Kalypso, DocETL, LOTUS) and the serving systems beneath it (vLLM, SGLang).
 - Contributing research issues to Quail, the lab's open-source AI SQL engine, to move the project forward.

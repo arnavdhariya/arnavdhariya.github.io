@@ -75,6 +75,9 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
     <div class="exp-list">
       {rendered.map(({ p, Content }) => (
         <article class="exp" data-draft={p.data.draft}>
+          <div class="exp-row">
+            {p.data.logo && <img class="exp-logo" src={p.data.logo} alt="" width="44" height="44" />}
+            <div class="exp-body">
           <div class="exp-top">
             <h3>{p.data.lab}</h3>
             <p class="exp-period">{period(p.data)}</p>
@@ -87,6 +90,8 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
             </ul>
           )}
           {p.data.draft && <p class="draft-note">Draft â€” awaiting bullets</p>}
+            </div>
+          </div>
         </article>
       ))}
     </div>

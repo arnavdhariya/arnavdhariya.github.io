@@ -15,6 +15,7 @@ const positions = defineCollection({
     tags: z.array(z.string()).default([]),
     // true until the bullets have been written by Arnav and refined
     draft: z.boolean().default(true),
+    logo: z.string().optional(),
     links: z.array(z.object({ label: z.string(), href: z.string().url() })).default([]),
   }),
 });
