@@ -5,6 +5,11 @@ role: Undergraduate Researcher
 advisor: Prof. Sangeetha Abdu Jyothi
 start: August 2025
 order: 3
-tags: [FAISS, Distributed Systems, Simulation, Cloud Infrastructure]
+draft: true
+tags: []
+links:
+  - label: Prof. Abdu Jyothi's page
+    href: https://www.ics.uci.edu/~sabdujyo
 ---
-Distributed vector search infrastructure; discrete-event simulation of large-scale sharding strategies (FAISS IVF, BigANN, BatANN) for agentic AI systems.
+- Studying storage resilience systems such as Phoenix (Kapil Agrawal) to develop research ideas for storage system resilience.
+- Working on intelligent reindexing that accounts for relations and traffic while maintaining recall between the infrastructure and application layers.
