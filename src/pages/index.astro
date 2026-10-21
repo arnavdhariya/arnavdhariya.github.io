@@ -82,14 +82,14 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} �
             <h3>{p.data.lab}</h3>
             <p class="exp-period">{period(p.data)}</p>
           </div>
-          <p class="exp-meta">{p.data.org} · {p.data.role}{p.data.advisor && <> · {p.data.advisorUrl ? <a href={p.data.advisorUrl} target="_blank" rel="noopener">{p.data.advisor}</a> : p.data.advisor}</>}</p>
+          <p class="exp-meta">{p.data.org} · {p.data.role}{p.data.advisor && <> · {p.data.advisorUrl ? <a href={p.data.advisorUrl} target="_blank" rel="noopener">{p.data.advisor}</a> : p.data.advisor}</>}{p.data.mentor && ` · Mentor: ${p.data.mentor}`}</p>
           <div class="prose"><Content /></div>
           {p.data.links.length > 0 && (
             <ul class="exp-links">
               {p.data.links.map((l) => <li><a href={l.href} target="_blank" rel="noopener">{l.label}</a></li>)}
             </ul>
           )}
-          {p.data.draft && <p class="draft-note">Draft — awaiting bullets</p>}
+          {p.data.draft && <p class="draft-note">Draft — pending review</p>}
             </div>
           </div>
         </article>
@@ -104,7 +104,7 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} �
       {presentations.map((x) => (
         <div class="pres">
           <div class="pres-top"><h3 class="pres-title">{x.title}</h3><p class="pres-venue">{x.venue}</p></div>
-          <p class="pres-authors">{x.authors}</p>
+          {x.authors && <p class="pres-authors">{x.authors}</p>}
         </div>
       ))}
     </div>
@@ -121,7 +121,7 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} �
     <p class="eyebrow">Recognition</p>
     <h2 id="h-awards">Awards</h2>
     <ul class="award-list" style="list-style:none">
-      {awards.map(([when, what]) => <li class="award"><span class="award-label">{when}</span>{what}</li>)}
+      {awards.map(([when, what]) => <li class="award">{when && <span class="award-label">{when}</span>}{what}</li>)}
     </ul>
   </section>
 

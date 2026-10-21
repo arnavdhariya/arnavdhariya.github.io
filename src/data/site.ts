@@ -34,7 +34,11 @@ export const publications = [
   },
 ];
 
-export const presentations = [
+export const presentations: { title: string; venue: string; authors?: string }[] = [
+  {
+    title: 'Inference-Aware & Privacy-Preserving Deletion in Databases (poster)',
+    venue: 'NorCal DB Day 2026, UC Santa Cruz',
+  },
   {
     title: 'Real Time Occupancy Based Control for Lighting, PPL, and HVAC in Commercial Buildings',
     venue: 'UCI Undergraduate Research Symposium, 2026',
@@ -48,10 +52,9 @@ export const presentations = [
 ];
 
 export const awards = [
+  ['2025', "Chancellor's Award for Excellence in Undergraduate Research (top 1% of UC undergraduate researchers)"],
   ['2025, 2026', 'UCI Undergraduate Research Symposium Finalist'],
-  ['2025', "Chancellor's Award for Excellence in Undergraduate Research"],
-  ['2025–2027', 'UCI UROP Fellow, 2025–2026 and 2026–2027'],
-  ['2025', 'Summer Undergraduate Research Program Fellowship ($1,500 Award)'],
-  ['2025', 'Calit2 IRT Award, Computer Vision Lab ($2,000)'],
-  ['2024–2027', "Dean's Honor List, 6 Quarters (GPA 3.92)"],
+  ['2025', 'Summer Undergraduate Research Program (SURP) Fellowship ($1,500)'],
+  ['2024–2027', "Dean's Honor List, 6 quarters (GPA 3.92)"],
+  ['', 'ICS Honors Program (selection-based); honors thesis on deletion'],
 ];

@@ -3,7 +3,8 @@ lab: Sharad's Lab (ISG Group)
 org: UC Irvine
 role: Undergraduate Research Fellow
 advisor: Prof. Sharad Mehrotra
-start: August 2025
+mentor: Dr. Vishal Chakraborty
+start: September 2025
 order: 2
 draft: true
 tags: []
@@ -13,5 +14,5 @@ links:
   - label: Information Systems Group
     href: https://isg.ics.uci.edu/
 ---
-- With Vishal Chakraborty, developed meaningful deletion: satisfying deletion requests with fewer deletions while minimally weakening privacy protection. Implemented the differential privacy exponential mechanism, an ILP formulation, and greedy Gumbel methods.
-- Co-authored "Inference-Aware & Privacy-Preserving Deletion in Databases" (ACM SIGMOD SeQuereDB Workshop, 2026), and presented the work at NorCal DB Day 2026 and the UCI UROP Symposium 2026 (Finalist). Currently extending the pipelines.
+- Designed and implemented inference-aware, differential-privacy-based deletion mechanisms (Python, MySQL) that remove a record together with the correlated data it could be re-inferred from. Using the exponential mechanism with a greedy Gumbel-max sampling trick cuts collateral deletions by 60–70% for a 20-point rise in re-inference probability.
+- Co-authored the SIGMOD Workshop SeQureDB 2026 paper and a SIGMOD 2027 submission, and presented at the UCI UROP Symposium 2026 (Finalist) and NorCal DB Day 2026. Currently extending the framework to physical-layer and pipeline deletions.
