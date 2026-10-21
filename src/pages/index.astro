@@ -19,17 +19,18 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
       I'm an undergraduate researcher at the <strong>University of California, Irvine</strong>,
       graduating June 2027 with a B.S. in Computer Science.
       My work spans data privacy and deletion, distributed systems for vector search and ML workloads,
-      and agentic AI infrastructure. I work across research groups advised by
-      <strong>Prof. Sharad Mehrotra</strong>, <strong>Prof. Sangeetha Abdu Jyothi</strong>, <strong>Prof. G.P. Li</strong>,
-      <strong>Prof. Wayne Hayes</strong>, and <strong>Prof. Glenn Healy</strong>.
+      and agentic AI infrastructure. I work with
+      <strong>Prof. Shreya Shankar</strong> (CMU), <strong>Prof. Sharad Mehrotra</strong>,
+      <strong>Prof. Sangeetha Abdu Jyothi</strong>, and <strong>Prof. Habiba Farrukh</strong> (UC Irvine),
+      and previously with <strong>Prof. Wayne Hayes</strong>.
     </p>
+    <p class="status"><strong>Actively looking for:</strong> PhD programs starting in 2027 and a summer 2027 internship.</p>
     <ul class="hero-meta">
       <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
       <li><a href={site.links.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
       <li><a href={site.links.github} target="_blank" rel="noopener">GitHub</a></li>
       <li><a href={site.links.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href={site.links.medium} target="_blank" rel="noopener">Medium</a></li>
-      <li><a href="/resume.pdf">CV (PDF)</a></li>
     </ul>
   </section>
 
@@ -40,7 +41,7 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
       <Image src={profile} alt="Portrait of Arnav Dhariya" class="portrait" width={280} height={360} loading="eager" />
       <div>
         <p>I'm an undergraduate at the <strong>University of California, Irvine</strong>, graduating in <strong>June 2027</strong> with a B.S. in Computer Science. Dean's Honor List, 6 quarters.</p>
-        <p>My research sits at the intersection of database systems, distributed infrastructure, and agentic AI. I currently work on privacy-preserving deletion and inference-aware data management in <strong>Sharad's Lab</strong>, distributed vector search infrastructure for large-scale agentic workloads in the <strong>NetSAIL Lab</strong>, energy systems and building automation in <strong>CalPlug</strong>, and previously hyperspectral imaging and haplotype assembly with <strong>Prof. Hayes</strong> and <strong>Prof. Healy</strong>.</p>
+        <p>My research sits at the intersection of database systems, distributed infrastructure, and agentic AI. I currently work on privacy-preserving deletion and inference-aware data management in <strong>Sharad's Lab</strong>, storage resilience and intelligent reindexing in the <strong>NetSAIL Lab</strong>, AI SQL execution engines at CMU's <strong>Full Stack Data Lab</strong>, and users' perspectives on AI agents in the <strong>SPECT Lab</strong>.</p>
         <p>I'm always happy to talk about query optimization, storage engines, data deletion, agentic systems, or PhD programs. See <a href="#contact">contact</a> below.</p>
         <ul class="tags" aria-label="Research areas">
           {['Data Privacy & Deletion','Distributed Systems','Vector Search','Agentic AI Infrastructure','ML Systems','Storage Engines','Query Optimization'].map((t) => <li class="tag">{t}</li>)}

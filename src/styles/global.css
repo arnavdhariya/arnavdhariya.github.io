@@ -303,3 +303,4 @@ a[target="_blank"]::after{content:"\00a0\2197";font-size:.85em;}
 .exp-logo{width:44px;height:44px;border-radius:8px;flex-shrink:0;margin-top:.1rem;}
 @media(max-width:640px){.exp-logo{width:36px;height:36px;}}
 .exp-links{padding-left:0;}
+.status{margin-top:1.1rem;padding:.7rem 1rem;border-left:3px solid var(--accent);background:var(--accent-soft);color:var(--ink);font-size:15px;max-width:60ch;}

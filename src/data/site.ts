@@ -2,7 +2,7 @@ export const site = {
   name: 'Arnav Dhariya',
   title: 'Arnav Dhariya · Database Systems & Agentic AI',
   description:
-    'Undergraduate researcher at UC Irvine (B.S. Computer Science, June 2027) working on data privacy and deletion, distributed vector search, and agentic AI infrastructure.',
+    'Undergraduate researcher at UC Irvine (B.S. Computer Science, June 2027) working on data privacy and deletion, distributed vector search, and agentic AI infrastructure. Seeking PhD programs starting in 2027 and a summer 2027 internship.',
   url: 'https://arnavdhariya.github.io',
   email: 'dhariyaa@uci.edu',
   formEmail: 'arnavdhariya24@gmail.com',
@@ -36,8 +36,9 @@ export const publications = [
 
 export const presentations: { title: string; venue: string; authors?: string }[] = [
   {
-    title: 'Inference-Aware & Privacy-Preserving Deletion in Databases (poster)',
+    title: 'Meaningful Data Deletion in Data Processing Pipelines',
     venue: 'NorCal DB Day 2026, UC Santa Cruz',
+    authors: 'Dhariya, A.A., Chakraborty, V., Mehrotra, S. · Department of Computer Science, UC Irvine',
   },
   {
     title: 'Real Time Occupancy Based Control for Lighting, PPL, and HVAC in Commercial Buildings',
