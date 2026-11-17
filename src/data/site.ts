@@ -32,24 +32,3 @@ export const publications = [
     links: [{ label: 'SSRN', href: 'https://ssrn.com/abstract=6178246' }],
   },
 ];
-
-export const presentations: { title: string; venue: string; authors?: string }[] = [
-  {
-    title: 'Meaningful Data Deletion in Data Processing Pipelines',
-    venue: 'NorCal DB Day 2026, UC Santa Cruz',
-    authors: 'Dhariya, A.A., Chakraborty, V., Mehrotra, S. · Department of Computer Science, UC Irvine',
-  },
-  {
-    title: 'Meaningful Data Deletion in Data Processing Pipelines',
-    venue: 'UCI Undergraduate Research Symposium, 2025',
-    authors: 'Dhariya, A.A., Chakraborty, V., Mehrotra, S. · Department of Computer Science, UC Irvine',
-  },
-];
-
-export const awards = [
-  ['2025', "Chancellor's Award for Excellence in Undergraduate Research (top 1% of UC undergraduate researchers)"],
-  ['2025, 2026', 'UCI Undergraduate Research Symposium Finalist'],
-  ['2025', 'Summer Undergraduate Research Program (SURP) Fellowship ($1,500)'],
-  ['2024–2027', "Dean's Honor List, 6 quarters (GPA 3.92)"],
-  ['', 'ICS Honors Program (selection-based); honors thesis on deletion'],
-];

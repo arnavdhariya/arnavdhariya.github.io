@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import profile from '../assets/profile_pic.webp';
-import { site, publications, presentations, awards } from '../data/site';
+import { site, publications } from '../data/site';
+import { news } from '../data/news';
 
 const positions = (await getCollection('positions')).sort((a, b) => a.data.order - b.data.order);
 const links = [
@@ -49,6 +50,19 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
     </div>
   </section>
 
+  <section id="news" aria-labelledby="h-news">
+    <p class="eyebrow">News</p>
+    <h2 id="h-news">Recent news</h2>
+    <ul class="news-list">
+      {news.map((n) => (
+        <li>
+          <span class="news-date">{n.date}</span>
+          <span>{n.href ? <a href={n.href} target="_blank" rel="noopener">{n.text}</a> : n.text}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
   <section id="publications" aria-labelledby="h-pubs">
     <p class="eyebrow">Publications</p>
     <h2 id="h-pubs">Papers</h2>
@@ -89,34 +103,6 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
         </article>
       ))}
     </div>
-  </section>
-
-  <section id="media" aria-labelledby="h-media">
-    <p class="eyebrow">Media</p>
-    <h2 id="h-media">Posters &amp; talks</h2>
-    <div class="pres-list">
-      {presentations.map((x) => (
-        <div class="pres">
-          <div class="pres-top"><h3 class="pres-title">{x.title}</h3><p class="pres-venue">{x.venue}</p></div>
-          {x.authors && <p class="pres-authors">{x.authors}</p>}
-        </div>
-      ))}
-    </div>
-    <div class="media-full">
-      <h3>SAHap: Simulated Annealing Haplotype Assembler</h3>
-      <div class="media-embed video-embed">
-        <iframe src="https://www.youtube-nocookie.com/embed/BR4FiOCcmdU" title="SAHap: Simulated Annealing Haplotype Assembler, UCI UROP Symposium" allow="picture-in-picture; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <p class="media-caption">UCI Undergraduate Research Symposium presentation Â· Hayes Lab Â· Chancellor's Award for Excellence in Undergraduate Research. No transcript yet â€” see the research summary above.</p>
-    </div>
-  </section>
-
-  <section id="awards" aria-labelledby="h-awards">
-    <p class="eyebrow">Recognition</p>
-    <h2 id="h-awards">Awards</h2>
-    <ul class="award-list" style="list-style:none">
-      {awards.map(([when, what]) => <li class="award">{when && <span class="award-label">{when}</span>}{what}</li>)}
-    </ul>
   </section>
 
   <section id="contact" aria-labelledby="h-contact">
