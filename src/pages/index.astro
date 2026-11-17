@@ -20,31 +20,20 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
   <section class="hero" id="top" aria-labelledby="h-name">
     <p class="status-line"><em>Actively looking for PhD programs starting in fall 2027 and a summer 2027 internship.</em></p>
     <h1 id="h-name">Arnav Dhariya</h1>
-    <p class="lede">
-      I'm an undergraduate researcher at the <strong>University of California, Irvine</strong>,
-      graduating June 2027 with a B.S. in Computer Science.
-      My work spans data privacy and deletion, distributed systems for vector search and ML workloads,
-      and agentic AI infrastructure. I work with
-      <strong>Prof. Shreya Shankar</strong>, <strong>Prof. Sharad Mehrotra</strong>,
-      <strong>Prof. Sangeetha Abdu Jyothi</strong>, and <strong>Prof. Habiba Farrukh</strong>,
-      and previously with <strong>Prof. Wayne Hayes</strong>.
-    </p>
-    <ul class="hero-links" aria-label="Profiles">
-      {links.map(([label, href, ext]) => <li><a href={href} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>{label}</a></li>)}
-    </ul>
-  </section>
-
-  <section id="about" aria-labelledby="h-about">
-    <p class="eyebrow">About</p>
-    <h2 id="h-about" class="sr-only">About</h2>
     <div class="about-grid">
       <Image src={profile} alt="Portrait of Arnav Dhariya" class="portrait" width={280} height={360} loading="eager" />
       <div>
-        <p>I'm an undergraduate at the <strong>University of California, Irvine</strong>, graduating in <strong>June 2027</strong> with a B.S. in Computer Science. Dean's Honor List, 6 quarters.</p>
-        <p>My research sits at the intersection of database systems, distributed infrastructure, and agentic AI. I currently work on privacy-preserving deletion and inference-aware data management in <strong>Sharad's Lab</strong>, storage resilience and intelligent reindexing in the <strong>NetSAIL Lab</strong>, AI SQL execution engines at CMU's <strong>Full Stack Data Lab</strong>, and users' perspectives on AI agents in the <strong>SPECT Lab</strong>.</p>
-        <p>I'm always happy to talk about query optimization, storage engines, data deletion, agentic systems, or PhD programs. See <a href="#contact">contact</a> below.</p>
-        <ul class="tags" aria-label="Research areas">
-          {['Data Privacy & Deletion','Distributed Systems','Vector Search','Agentic AI Infrastructure','ML Systems','Storage Engines','Query Optimization'].map((t) => <li class="tag">{t}</li>)}
+        <p class="lede">
+          I'm an undergraduate researcher at the <strong>University of California, Irvine</strong>,
+          graduating June 2027 with a B.S. in Computer Science.
+          My work spans data privacy and deletion, distributed systems for vector search and ML workloads,
+          and agentic AI infrastructure. I work with
+          <strong>Prof. Shreya Shankar</strong>, <strong>Prof. Sharad Mehrotra</strong>,
+          <strong>Prof. Sangeetha Abdu Jyothi</strong>, and <strong>Prof. Habiba Farrukh</strong>,
+          and previously with <strong>Prof. Wayne Hayes</strong>.
+        </p>
+        <ul class="hero-links" aria-label="Profiles">
+          {links.map(([label, href, ext]) => <li><a href={href} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>{label}</a></li>)}
         </ul>
       </div>
     </div>
