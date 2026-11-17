@@ -19,6 +19,8 @@ const person = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <script is:inline>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -46,6 +48,7 @@ const person = {
           <a href="/#media">Media</a>
           <a href="/#writing">Writing</a>
           <a href="/#contact">Contact</a>
+          <button type="button" class="theme-toggle" id="theme-toggle">Light mode</button>
         </nav>
       </div>
     </header>
@@ -66,6 +69,20 @@ const person = {
           else l.removeAttribute('aria-current');
         });
       };
+      const btn = document.getElementById('theme-toggle')!;
+      const root = document.documentElement;
+      const sync = () => {
+        const light = root.getAttribute('data-theme') === 'light';
+        btn.textContent = light ? 'Dark mode' : 'Light mode';
+        btn.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
+      };
+      btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch {}
+        sync();
+      });
+      sync();
       document.addEventListener('scroll', update, { passive: true });
       update();
     </script>
