@@ -4,16 +4,21 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import profile from '../assets/profile_pic.webp';
 import { site, publications, presentations, awards } from '../data/site';
-import { getMediumPosts } from '../lib/medium';
+import { news } from '../data/news';
 
 const positions = (await getCollection('positions')).sort((a, b) => a.data.order - b.data.order);
 const rendered = await Promise.all(positions.map(async (p) => ({ p, Content: (await render(p)).Content })));
-const posts = await getMediumPosts(site.mediumUser);
+const links = [
+  ['Email', `mailto:${site.email}`, false],
+  ['Google Scholar', site.links.scholar, true],
+  ['GitHub', site.links.github, true],
+  ['LinkedIn', site.links.linkedin, true],
+  ['X', site.links.x, true],
+].filter(([, href]) => href) as [string, string, boolean][];
 const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} – ${d.end}` : d.end);
 ---
 <Base>
   <section class="hero" id="top" aria-labelledby="h-name">
-    <p class="eyebrow">Database Systems · Distributed Infrastructure · Agentic AI</p>
     <h1 id="h-name">Arnav Dhariya</h1>
     <p class="lede">
       I'm an undergraduate researcher at the <strong>University of California, Irvine</strong>,
@@ -24,14 +29,10 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} �
       <strong>Prof. Sangeetha Abdu Jyothi</strong>, and <strong>Prof. Habiba Farrukh</strong> (UC Irvine),
       and previously with <strong>Prof. Wayne Hayes</strong>.
     </p>
-    <p class="status"><strong>Actively looking for:</strong> PhD programs starting in 2027 and a summer 2027 internship.</p>
-    <ul class="hero-meta">
-      <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-      <li><a href={site.links.scholar} target="_blank" rel="noopener">Google Scholar</a></li>
-      <li><a href={site.links.github} target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href={site.links.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href={site.links.medium} target="_blank" rel="noopener">Medium</a></li>
+    <ul class="hero-links" aria-label="Profiles">
+      {links.map(([label, href, ext]) => <li><a href={href} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>{label}</a></li>)}
     </ul>
+    <p class="status"><strong>Actively looking for:</strong> PhD programs starting in 2027 and a summer 2027 internship.</p>
   </section>
 
   <section id="about" aria-labelledby="h-about">
@@ -70,9 +71,17 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} �
     </div>
   </section>
 
+  <section id="news" aria-labelledby="h-news">
+    <p class="eyebrow">News</p>
+    <h2 id="h-news">Recent news</h2>
+    <ul class="news-list">
+      {news.map((n) => <li><span class="news-date">{n.date}</span><span>{n.text}</span></li>)}
+    </ul>
+  </section>
+
   <section id="research" aria-labelledby="h-research">
-    <p class="eyebrow">Research Experience</p>
-    <h2 id="h-research">Current &amp; past research</h2>
+    <p class="eyebrow">Experience</p>
+    <h2 id="h-research">Research experience</h2>
     <div class="exp-list">
       {rendered.map(({ p, Content }) => (
         <article class="exp" data-draft={p.data.draft}>
@@ -84,13 +93,19 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} �
             <p class="exp-period">{period(p.data)}</p>
           </div>
           <p class="exp-meta">{p.data.org} · {p.data.role}{p.data.advisor && <> · {p.data.advisorUrl ? <a href={p.data.advisorUrl} target="_blank" rel="noopener">{p.data.advisor}</a> : p.data.advisor}</>}{p.data.mentor && ` · Mentor: ${p.data.mentor}`}</p>
-          <div class="prose"><Content /></div>
+          <p class="blurb">{p.data.blurb}</p>
+          {p.body?.trim() && (
+            <details>
+              <summary>Details</summary>
+              <div class="prose"><Content /></div>
+            </details>
+          )}
           {p.data.links.length > 0 && (
             <ul class="exp-links">
               {p.data.links.map((l) => <li><a href={l.href} target="_blank" rel="noopener">{l.label}</a></li>)}
             </ul>
           )}
-          {p.data.draft && <p class="draft-note">Draft — pending review</p>}
+          {p.data.draft && import.meta.env.DEV && <p class="draft-note">Draft — pending review</p>}
             </div>
           </div>
         </article>
@@ -124,32 +139,6 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} �
     <ul class="award-list" style="list-style:none">
       {awards.map(([when, what]) => <li class="award">{when && <span class="award-label">{when}</span>}{what}</li>)}
     </ul>
-  </section>
-
-  <section id="writing" aria-labelledby="h-writing">
-    <p class="eyebrow">Writing</p>
-    <div class="medium-header">
-      <h2 id="h-writing" style="margin-bottom:0">Notes &amp; posts</h2>
-      <a class="medium-all" href={site.links.medium} target="_blank" rel="noopener">All posts on Medium</a>
-    </div>
-    <div class="card-grid">
-      {posts.length ? posts.map((post) => (
-        <a class="card" href={post.link} target="_blank" rel="noopener">
-          <div class="card-body">
-            <h3 class="card-title">{post.title}</h3>
-            {post.excerpt && <p class="card-excerpt">{post.excerpt}…</p>}
-            <p class="card-meta">{post.date}</p>
-          </div>
-        </a>
-      )) : (
-        <a class="card" href={site.links.medium} target="_blank" rel="noopener">
-          <div class="card-body">
-            <h3 class="card-title">Read my writing on Medium</h3>
-            <p class="card-excerpt">Posts on database systems, privacy-preserving ML, distributed infrastructure, and research process.</p>
-          </div>
-        </a>
-      )}
-    </div>
   </section>
 
   <section id="contact" aria-labelledby="h-contact">

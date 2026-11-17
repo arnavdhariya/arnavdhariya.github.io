@@ -6,6 +6,7 @@ const positions = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/positions' }),
   schema: z.object({
     lab: z.string(),
+    blurb: z.string(),
     org: z.string(),
     role: z.string(),
     advisor: z.string().optional(),

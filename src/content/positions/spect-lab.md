@@ -1,5 +1,6 @@
 ---
 lab: SPECT Lab
+blurb: "Studying users' perspectives on AI agents by analyzing Reddit posts, and building AI pipelines to automate the analysis."
 org: UC Irvine
 role: Undergraduate Researcher
 advisor: Prof. Habiba Farrukh
@@ -10,4 +11,3 @@ draft: true
 tags: []
 links: []
 ---
-- Studying users' perspectives on AI agents by analyzing Reddit posts, and building AI pipelines to automate that analysis.

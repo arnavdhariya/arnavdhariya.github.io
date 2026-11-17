@@ -1,5 +1,6 @@
 ---
 lab: NetSAIL Lab
+blurb: "Built a discrete-event simulator for large-scale vector-index sharding, and a heuristic that fixes problems in industry-standard sharding. Now working on storage resilience and intelligent reindexing that preserves recall across infrastructure and application layers."
 org: UC Irvine
 role: Undergraduate Researcher
 advisor: Prof. Sangeetha Abdu Jyothi

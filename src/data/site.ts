@@ -10,9 +10,8 @@ export const site = {
     scholar: 'https://scholar.google.com/citations?user=jzSG8DgAAAAJ&hl=en',
     github: 'https://github.com/arnavdhariya',
     linkedin: 'https://www.linkedin.com/in/arnav-dhariya-3a2441241/',
-    medium: 'https://medium.com/@arnavdhariya24',
+    x: '', // TODO: add X profile URL
   },
-  mediumUser: 'arnavdhariya24',
 };
 
 export const publications = [

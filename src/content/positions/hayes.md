@@ -1,5 +1,6 @@
 ---
 lab: Dr. Wayne Hayes Research Group
+blurb: "Extended the SAHap haplotype assembler for diploid wMEC, cutting runtime 20% on datasets with 500+ SNPs and improving reconstruction accuracy."
 org: UC Irvine
 role: Undergraduate Researcher
 advisor: Prof. Wayne Hayes
