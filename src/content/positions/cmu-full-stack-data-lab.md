@@ -2,7 +2,7 @@
 lab: Full Stack Data Lab
 blurb: "Co-designed Quail, an execution engine for AI-native SQL on vLLM that reuses KV caches for hybrid models, cutting latency 3–4x at identical accuracy. Also wrote the cost-model analysis for AI filters."
 org: Carnegie Mellon University
-role: Visiting Researcher
+role: Undergraduate Researcher
 advisor: Prof. Shreya Shankar
 logo: /logos/fsdatalab.png
 start: July 2026
