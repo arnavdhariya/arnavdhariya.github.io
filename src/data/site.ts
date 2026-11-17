@@ -2,7 +2,7 @@ export const site = {
   name: 'Arnav Dhariya',
   title: 'Arnav Dhariya · Database Systems & Agentic AI',
   description:
-    'Undergraduate researcher at UC Irvine (B.S. Computer Science, June 2027) working on data privacy and deletion, distributed vector search, and agentic AI infrastructure. Seeking PhD programs starting in 2027 and a summer 2027 internship.',
+    'Undergraduate researcher at UC Irvine (B.S. Computer Science, June 2027) working on data privacy and deletion, distributed vector search, and agentic AI infrastructure. Seeking PhD programs starting in fall 2027 and a summer 2027 internship.',
   url: 'https://arnavdhariya.github.io',
   email: 'dhariyaa@uci.edu',
   formEmail: 'arnavdhariya24@gmail.com',
@@ -10,7 +10,7 @@ export const site = {
     scholar: 'https://scholar.google.com/citations?user=jzSG8DgAAAAJ&hl=en',
     github: 'https://github.com/arnavdhariya',
     linkedin: 'https://www.linkedin.com/in/arnav-dhariya-3a2441241/',
-    x: '', // TODO: add X profile URL
+    x: 'https://x.com/dhariyaar/',
   },
 };
 
@@ -38,11 +38,6 @@ export const presentations: { title: string; venue: string; authors?: string }[]
     title: 'Meaningful Data Deletion in Data Processing Pipelines',
     venue: 'NorCal DB Day 2026, UC Santa Cruz',
     authors: 'Dhariya, A.A., Chakraborty, V., Mehrotra, S. · Department of Computer Science, UC Irvine',
-  },
-  {
-    title: 'Real Time Occupancy Based Control for Lighting, PPL, and HVAC in Commercial Buildings',
-    venue: 'UCI Undergraduate Research Symposium, 2026',
-    authors: 'Dhariya, A.A., Kaushal, A., Pandit, R.S., Wang, S., Li, G.P. · CalPlug / Calit2, UC Irvine',
   },
   {
     title: 'Meaningful Data Deletion in Data Processing Pipelines',
