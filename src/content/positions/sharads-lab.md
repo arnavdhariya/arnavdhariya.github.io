@@ -1,5 +1,5 @@
 ---
-lab: Sharad's Lab (ISG Group)
+lab: Sharad's Lab (Information Systems Group)
 blurb: "Built inference-aware, differential-privacy-based deletion mechanisms that cut collateral deletions by 60–70% for a 20-point rise in re-inference probability. Co-authored the SeQureDB 2026 paper and am extending the framework to pipeline deletions."
 org: UC Irvine
 role: Undergraduate Research Fellow
