@@ -10,7 +10,7 @@ import { posts } from '../../data/blog';
         {posts.map((post) => (
           <li>
             <h2><a href={post.url} target="_blank" rel="noopener">{post.title}</a></h2>
-            {(post.source || post.date) && <p class="blog-meta">{[post.source, post.date].filter(Boolean).join(" · ")}</p>}
+            {(post.source || post.date) && <p class="blog-meta">{[post.date, post.source].filter(Boolean).join(" · ")}</p>}
             {post.blurb && <p>{post.blurb}</p>}
           </li>
         ))}
