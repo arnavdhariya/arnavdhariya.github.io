@@ -394,3 +394,14 @@ footer{padding-top:1.2rem;}
 .intro::after{content:"";display:block;clear:both;}
 .intro .portrait{float:left;width:140px;height:180px;object-fit:cover;object-position:center top;border:1px solid var(--rule);border-radius:4px;margin:.25rem 1.6rem .6rem 0;}
 @media(max-width:640px){.intro .portrait{width:100px;height:128px;margin-right:1rem;}}
+
+/* ===== small phones ===== */
+@media(max-width:480px){
+  main,.nav-inner,footer{padding-left:1.1rem;padding-right:1.1rem;}
+  .intro .portrait{width:84px;height:108px;margin-right:.8rem;}
+  .lede{font-size:1.05rem;line-height:1.65;}
+  .exp{padding-left:1.1rem;}
+  .exp-row{gap:.7rem;}
+  .exp-logo{width:28px;height:28px;margin-top:.2rem;}
+  .exp-top{gap:.1rem;}
+}
