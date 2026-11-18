@@ -414,3 +414,13 @@ nav.links a{font-size:17px;}
 .theme-toggle{width:40px;height:40px;}
 .theme-toggle svg{width:21px;height:21px;}
 @media(max-width:480px){.nav-name{font-size:1.25rem;}nav.links a{font-size:16px;}}
+
+/* ===== top bar: large and high contrast ===== */
+.nav-inner{padding-top:1.3rem;padding-bottom:1.3rem;gap:.8rem 1.5rem;}
+.nav-name{font-size:1.9rem;font-weight:600;color:var(--ink);line-height:1.2;}
+nav.links{gap:2rem;}
+nav.links a{font-size:22px;font-weight:500;color:var(--ink);padding-bottom:3px;border-bottom:2px solid transparent;}
+nav.links a:hover,nav.links a[aria-current]{border-color:var(--accent);}
+.theme-toggle{width:48px;height:48px;color:var(--ink);border-width:2px;}
+.theme-toggle svg{width:26px;height:26px;}
+@media(max-width:560px){.nav-name{font-size:1.5rem;}nav.links{gap:1.4rem;}nav.links a{font-size:20px;}.theme-toggle{width:44px;height:44px;}}
