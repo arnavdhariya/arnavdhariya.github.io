@@ -405,3 +405,12 @@ footer{padding-top:1.2rem;}
   .exp-logo{width:28px;height:28px;margin-top:.2rem;}
   .exp-top{gap:.1rem;}
 }
+
+/* ===== larger top bar ===== */
+.nav-inner{padding-top:1.2rem;padding-bottom:1.2rem;}
+.nav-name{font-size:1.45rem;}
+nav.links{gap:1.8rem;}
+nav.links a{font-size:17px;}
+.theme-toggle{width:40px;height:40px;}
+.theme-toggle svg{width:21px;height:21px;}
+@media(max-width:480px){.nav-name{font-size:1.25rem;}nav.links a{font-size:16px;}}
