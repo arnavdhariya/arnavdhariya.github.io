@@ -19,9 +19,8 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
   <section class="hero" id="top" aria-labelledby="h-name">
     <p class="status-line"><em>Actively looking for PhD positions in databases starting fall 2027 and summer 2027 internships.</em></p>
     <h1 id="h-name">Arnav Dhariya</h1>
-    <div class="about-grid">
+    <div class="intro">
       <Image src={profile} alt="Portrait of Arnav Dhariya" class="portrait" width={280} height={360} loading="eager" />
-      <div>
         <p class="lede">
           I'm an undergraduate researcher at the <strong>University of California, Irvine</strong>,
           graduating June 2027 with a B.S. in Computer Science.
@@ -35,7 +34,6 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
           <li>{site.emailDisplay}</li>
       {links.map(([label, href, ext]) => <li><a href={href} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}>{label}</a></li>)}
         </ul>
-      </div>
     </div>
   </section>
 
