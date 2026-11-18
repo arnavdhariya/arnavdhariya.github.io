@@ -52,7 +52,6 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
   </section>
 
   <section id="publications" aria-labelledby="h-pubs">
-    <p class="eyebrow">Publications</p>
     <h2 id="h-pubs">Papers</h2>
     <div class="pub-list">
       {publications.map((pub) => (
@@ -72,7 +71,6 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
   </section>
 
   <section id="research" aria-labelledby="h-research">
-    <p class="eyebrow">Experience</p>
     <h2 id="h-research">Research experience</h2>
     <div class="exp-list">
       {positions.map((p) => (
@@ -93,49 +91,4 @@ const period = (d: { start?: string; end: string }) => (d.start ? `${d.start} â€
     </div>
   </section>
 
-  <section id="contact" aria-labelledby="h-contact">
-    <p class="eyebrow">Contact</p>
-    <h2 id="h-contact">Get in touch</h2>
-    <div class="contact-grid">
-      <div>
-        <p>I'd love to hear from faculty considering PhD applicants, current grad students who can speak to a lab's day-to-day, or anyone interested in collaborating on the research above. I generally reply within a couple of days.</p>
-        <div class="contact-links">
-          <a href={`mailto:${site.email}`}>{site.email}</a>
-          <a href={site.links.scholar} target="_blank" rel="noopener">Google Scholar</a>
-          <a href={site.links.github} target="_blank" rel="noopener">GitHub</a>
-          <a href={site.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-      <form class="cform" id="cform" aria-label="Contact form">
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_subject" value="Website contact: Arnav Dhariya" />
-        <div class="frow">
-          <div class="fg"><label class="fl" for="f-name">Name</label><input class="fi" id="f-name" type="text" name="name" autocomplete="name" required /></div>
-          <div class="fg"><label class="fl" for="f-email">Email</label><input class="fi" id="f-email" type="email" name="email" autocomplete="email" required /></div>
-        </div>
-        <div class="fg"><label class="fl" for="f-subject">Subject</label><input class="fi" id="f-subject" type="text" name="subject" /></div>
-        <div class="fg"><label class="fl" for="f-message">Message</label><textarea class="fta" id="f-message" name="message" required></textarea></div>
-        <button class="fsub" type="submit">Send message</button>
-        <p class="fmsg" id="fmsg" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </section>
-
-  <script define:vars={{ formEmail: site.formEmail, email: site.email }}>
-    const form = document.getElementById('cform');
-    const msg = document.getElementById('fmsg');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('.fsub');
-      btn.disabled = true; msg.textContent = 'Sendingâ€¦';
-      try {
-        const r = await fetch(`https://formsubmit.co/ajax/${formEmail}`, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
-        if (!r.ok) throw new Error();
-        msg.textContent = "Sent. Thanks, I'll reply soon."; form.reset();
-      } catch {
-        msg.textContent = `Couldn't send. Please email ${email} directly.`;
-      }
-      btn.disabled = false;
-    });
-  </script>
 </Base>

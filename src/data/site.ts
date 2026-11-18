@@ -5,7 +5,6 @@ export const site = {
     'Undergraduate researcher at UC Irvine (B.S. Computer Science, June 2027) working on data privacy and deletion, distributed vector search, and agentic AI infrastructure. Seeking PhD positions in databases starting fall 2027 and a summer 2027 internship.',
   url: 'https://arnavdhariya.github.io',
   email: 'dhariyaa@uci.edu',
-  formEmail: 'arnavdhariya24@gmail.com',
   links: {
     scholar: 'https://scholar.google.com/citations?user=jzSG8DgAAAAJ&hl=en',
     github: 'https://github.com/arnavdhariya',
