@@ -9,7 +9,6 @@ const person = {
   '@type': 'Person',
   name: site.name,
   url: site.url,
-  email: `mailto:${site.email}`,
   affiliation: { '@type': 'CollegeOrUniversity', name: 'University of California, Irvine' },
   sameAs: [site.links.scholar, site.links.github, site.links.linkedin, site.links.x].filter(Boolean),
 };
@@ -54,7 +53,7 @@ const person = {
     <main id="main"><slot /></main>
     <footer>
       <p>&copy; {new Date().getFullYear()} Arnav Dhariya · UC Irvine</p>
-      <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p>{site.emailDisplay}</p>
     </footer>
     <script>
       const btn = document.getElementById('theme-toggle')!;
